@@ -2,15 +2,19 @@ import requests from './httpServices';
 
 const UserServices = {
   userLogin(body) {
-    return requests.post('/user/login', body);
+    return requests.post('/auth/login/', body);
   },
 
   verifyEmailAddress(body) {
-    return requests.post('/user/verify-email', body);
+    return requests.post('/auth/send_otp_for_email/', body);
   },
-
-  userRegister(token, body) {
-    return requests.post(`/user/register/${token}`, body);
+  verifyOtp(body) {
+    return requests.post('/auth/verify_otp_for_email/', body);
+  },
+  
+  userRegister(body) {
+    console.log("ver-em::", body);
+    return requests.post('/auth/register/', body);
   },
 
   signUpWithProvider(body) {

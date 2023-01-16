@@ -10,16 +10,21 @@ import ProductCard from '@component/product/ProductCard';
 import CategoryCarousel from '@component/carousel/CategoryCarousel';
 import { SidebarContext } from '@context/SidebarContext';
 import Loading from '@component/preloader/Loading';
+import { useSelector } from 'react-redux';
 
 const Search = ({ products }) => {
   const { isLoading, setIsLoading } = useContext(SidebarContext);
 
+
   const [visibleProduct, setVisibleProduct] = useState(18);
   const { productData, setSortedField } = useFilter(products);
 
+  const { brandCategoryList } = useSelector((state) => state.BrandCategoryList)
+  console.log("cst-pr", brandCategoryList);
   useEffect(() => {
     setIsLoading(false);
-  }, [products]);
+  }, [brandCategoryList]);
+
 
   return (
     <Layout title="Search" description="This is search page">
@@ -33,7 +38,7 @@ const Search = ({ products }) => {
               <div className="relative">
                 <CategoryCarousel />
               </div>
-              {productData.length === 0 ? (
+              {brandCategoryList.length === 0 ? (
                 <div className="text-center align-middle mx-auto p-5 my-5">
                   <Image
                     className="my-4"
@@ -77,7 +82,7 @@ const Search = ({ products }) => {
               ) : (
                 <>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
-                    {productData?.slice(0, visibleProduct).map((product, i) => (
+                    {brandCategoryList?.map((product, i) => (
                       <ProductCard key={i + 1} product={product} />
                     ))}
                   </div>

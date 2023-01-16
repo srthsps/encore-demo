@@ -29,8 +29,8 @@ function reducer(state, action) {
     case 'SAVE_SHIPPING_ADDRESS':
       return { ...state, shippingAddress: action.payload };
 
-    case 'SAVE_COUPON':
-      return { ...state, couponInfo: action.payload };
+    case 'USER_REG':
+      return { ...state, userRegInfo: action.payload };
   }
 }
 

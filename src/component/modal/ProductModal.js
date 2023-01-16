@@ -16,10 +16,10 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
   const { setIsLoading, isLoading } = useContext(SidebarContext);
   const { handleAddItem, setItem, item } = useAddToCart();
 
-  const handleMoreInfo = (slug) => {
+  const handleMoreInfo = (id) => {
     setModalOpen(false);
 
-    router.push(`/product/${slug}`);
+    router.push(`/product/${id}`);
     setIsLoading(!isLoading);
   };
 
@@ -28,11 +28,11 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
       <div className="inline-block overflow-y-auto h-full align-middle transition-all transform bg-white shadow-xl rounded-2xl">
         <div className="flex flex-col lg:flex-row md:flex-row w-full max-w-4xl overflow-hidden">
           <div
-            onClick={() => handleMoreInfo(product.slug)}
+            onClick={() => handleMoreInfo(product.id)}
             className="flex-shrink-0 flex items-center justify-center h-auto cursor-pointer"
           >
-            <Image
-              src={product.image}
+            <img
+              src={product.images}
               width={420}
               height={420}
               alt={product.title}

@@ -8,6 +8,7 @@ import { pages } from '@utils/data';
 import Category from '@component/category/Category';
 
 const NavbarPromo = () => {
+
   return (
     <>
       <div className="hidden lg:block xl:block bg-white border-b">
@@ -100,7 +101,7 @@ const NavbarPromo = () => {
                         </Popover.Panel>
                       </Transition>
                     </Popover>
-                    <Link href="/offer">
+                    {/* <Link href="/offer">
                       <a className="relative inline-flex items-center h-6 bg-red-100 font-serif ml-4 py-0 px-2 rounded text-sm font-medium text-red-500 hover:text-emerald-600">
                         Offers
                         <div className="absolute flex w-2 h-2 left-auto -right-1 -top-1">
@@ -108,7 +109,7 @@ const NavbarPromo = () => {
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                         </div>
                       </a>
-                    </Link>
+                    </Link> */}
                   </Popover.Group>
                 </div>
               </div>

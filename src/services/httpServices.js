@@ -2,7 +2,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const instance = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}`,
+  // baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}`,
+  baseURL: "https://dev.enfono.com/api_encore_backend/api",
   timeout: 500000,
   headers: {
     Accept: 'application/json',

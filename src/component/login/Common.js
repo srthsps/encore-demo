@@ -6,43 +6,69 @@ import Login from '@component/login/Login';
 import Register from '@component/login/Register';
 import ResetPassword from '@component/login/ResetPassword';
 import useLoginSubmit from '@hooks/useLoginSubmit';
+import VerifyEmail from './VerifyEmail';
+import VerifyOtp from './VerifyOtp';
 
 const Common = ({ setModalOpen }) => {
   const [showRegister, setShowRegister] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
+  const [showVerifyEmail, setShowVerifyEmail] = useState(false);
+  const [showVerifyOtp, setShowVerifyOtp] = useState(false);
 
   const { handleGoogleSignIn, GoogleLogin } = useLoginSubmit(setModalOpen);
 
   const handleModal = () => {
     setShowRegister(!showRegister);
     setShowResetPassword(false);
+    setShowVerifyEmail(false)
+    setShowVerifyOtp(false)
   };
+  console.log("verify-otp:::", showVerifyOtp)
 
   return (
     <>
       <div className="overflow-hidden bg-white mx-auto">
-        {showResetPassword ? (
+
+
+        {showVerifyOtp ? (
+          <VerifyOtp
+            setModalOpen={setModalOpen}
+            setShowVerifyOtp={setShowVerifyOtp}
+            showVerifyOtp={setShowVerifyOtp}
+            setShowVerifyEmail={setShowVerifyEmail}
+          />
+        ) : showVerifyEmail ? (<VerifyEmail
+          setModalOpen={setModalOpen}
+          // setShowVerifyEmail={setShowVerifyEmail}
+          setShowVerifyOtp={setShowVerifyOtp}
+        />) : showResetPassword ? (
           <ResetPassword
             setShowResetPassword={setShowResetPassword}
+            setShowVerifyEmail={setShowVerifyEmail}
             setModalOpen={setModalOpen}
           />
         ) : showRegister ? (
           <Register
             setShowResetPassword={setShowResetPassword}
             setModalOpen={setModalOpen}
+            setShowVerifyEmail={setShowVerifyEmail}
           />
         ) : (
           <Login
             setShowResetPassword={setShowResetPassword}
             setModalOpen={setModalOpen}
+            setShowVerifyEmail={setShowVerifyEmail}
           />
         )}
 
-        <div className="my-8 after:bg-gray-100 before:bg-gray-100 fo10t-sans text-center font-medium">
+
+
+
+        < div className="my-8 after:bg-gray-100 before:bg-gray-100 fo10t-sans text-center font-medium">
           OR
         </div>
 
-        <div className="flex justify-between flex-col lg:flex-row">
+        {/* <div className="flex justify-between flex-col lg:flex-row">
           <button className="text-sm inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-serif text-center justify-center rounded-md focus:outline-none text-gray-600 bg-gray-100 shadow-sm md:px-2 my-1 sm:my-1 md:my-1 lg:my-0 lg:px-3 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-blue-600 h-11 md:h-12 w-full mr-2">
             <ImFacebook /> <span className="ml-2">Login With Facebook</span>
           </button>
@@ -62,7 +88,7 @@ const Common = ({ setModalOpen }) => {
             onFailure={handleGoogleSignIn}
             cookiePolicy={'single_host_origin'}
           />
-        </div>
+        </div> */}
         <div className="text-center text-sm text-gray-900 mt-4">
           <div className="text-gray-500 mt-2.5">
             {showRegister ? 'Already have a account ?' : 'Not have a account ?'}

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Image from 'next/image';
 import { useCart } from 'react-use-cart';
 import { IoBagAddSharp, IoAdd, IoRemove } from 'react-icons/io5';
 
@@ -12,9 +11,10 @@ const ProductCard = ({ product }) => {
   const { items, addItem, updateItemQuantity, inCart } = useCart();
 
   const handleAddItem = (p) => {
+    console.log("id:::",p.id)
     const newItem = {
       ...p,
-      id: p._id,
+      id: p.id,
     };
     addItem(newItem);
   };
@@ -39,8 +39,8 @@ const ProductCard = ({ product }) => {
           )}
           <Discount product={product} />
 
-          <Image
-            src={product.image}
+          <img
+            src={product.images}
             width={160}
             height={160}
             alt={product.title}
@@ -50,7 +50,7 @@ const ProductCard = ({ product }) => {
         <div className="w-full px-3 lg:px-4 pb-4 overflow-hidden">
           <div className="relative mb-1">
             <span className="text-gray-400 font-medium text-xs d-block mb-1">
-              {product.unit}
+              {/* {product.rating.count} */}
             </span>
             <h2 className="text-heading truncate mb-0 block text-sm font-medium text-gray-600">
               <span className="line-clamp-2">{product.title}</span>
@@ -59,11 +59,11 @@ const ProductCard = ({ product }) => {
 
           <div className="flex justify-between items-center text-heading text-sm sm:text-base space-s-2 md:text-base lg:text-xl">
             <Price product={product} card={true} />
-            {inCart(product._id) ? (
+            {inCart(product.id) ? (
               <div>
                 {items.map(
                   (item) =>
-                    item.id === product._id && (
+                    item.id === product.id && (
                       <div
                         key={item.id}
                         className="h-9 w-auto flex flex-wrap items-center justify-evenly py-1 px-2 bg-emerald-500 text-white rounded"

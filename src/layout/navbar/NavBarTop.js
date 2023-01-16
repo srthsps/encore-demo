@@ -6,27 +6,50 @@ import { FiPhoneCall, FiUser } from 'react-icons/fi';
 //internal import
 import LoginModal from '@component/modal/LoginModal';
 import { UserContext } from '@context/UserContext';
+import { useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 const NavBarTop = () => {
+
   const {
     state: { userInfo },
+    dispatch,
   } = useContext(UserContext);
   const router = useRouter();
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
   const handleModal = () => {
-    if (userInfo?.email) {
+    if (userInfo?.data) {
       router.push('/user/dashboard');
     } else {
       setModalOpen(!modalOpen);
     }
   };
 
+  const handleLogOut = () => {
+    dispatch({ type: 'USER_LOGOUT' });
+    Cookies.remove('userInfo');
+    Cookies.remove('couponInfo');
+    router.push('/');
+  };
+
+  const handleLogin = () => {
+    setModalOpen(!modalOpen)
+    setShowLogin(true)
+
+  }
+
   return (
     <>
       {modalOpen && (
-        <LoginModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+        <LoginModal 
+        modalOpen={modalOpen} 
+        setModalOpen={setModalOpen}
+        showLogin={showLogin}
+        setShowLogin={setShowLogin}
+         />
       )}
 
       <div className="hidden lg:block bg-gray-100">
@@ -59,15 +82,30 @@ const NavBarTop = () => {
                 My account
               </button>
               <span className="mx-2">|</span>
-              <button
-                onClick={() => setModalOpen(!modalOpen)}
-                className="flex items-center font-medium hover:text-emerald-600"
-              >
-                <span className="mr-1">
-                  <FiUser />
-                </span>
-                Login
-              </button>
+              {
+                userInfo?.data ?
+                  (<button
+                    onClick={handleLogOut}
+                    className="flex items-center font-medium hover:text-emerald-600"
+                  >
+                    <span className="mr-1">
+                      <FiUser />
+                    </span>
+                    Logout
+                  </button>)
+                  :
+                  (
+                    <button
+                      onClick={() => handleLogin()}
+                      className="flex items-center font-medium hover:text-emerald-600"
+                    >
+                      <span className="mr-1">
+                        <FiUser />
+                      </span>
+                      Login
+                    </button>
+                  )
+              }
             </div>
           </div>
         </div>
