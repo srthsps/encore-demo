@@ -37,14 +37,15 @@ const Navbar = () => {
       setSearchText('');
     }
   };
-
+  
   useEffect(() => {
     if (Cookies.get('userInfo')) {
       const user = JSON.parse(Cookies.get('userInfo'));
       setImageUrl(user.image);
     }
   }, []);
-
+  
+  
   return (
     <>
       <CartDrawer />
@@ -56,13 +57,15 @@ const Navbar = () => {
         <div className="max-w-screen-2xl mx-auto px-3 sm:px-10">
           <div className="top-bar h-16 lg:h-auto flex items-center justify-between py-4 mx-auto">
             <Link href="/">
-              <a className="mr-3 lg:mr-12 xl:mr-12 hidden md:hidden lg:block">
-                <Image
+              <a className="mr-3 lg:mr-12 xl:mr-12 hidden md:hidden lg:block text-white">
+              Encore Powers ecommerce
+                
+                {/* <Image
                   width={110}
                   height={40}
                   src="/logo/logo-light.svg"
                   alt="logo"
-                />
+                /> */}
               </a>
             </Link>
             <div className="w-full transition-all duration-200 ease-in-out lg:flex lg:max-w-[520px] xl:max-w-[750px] 2xl:max-w-[900px] md:mx-12 lg:mx-4 xl:mx-0">
@@ -113,7 +116,7 @@ const Navbar = () => {
               <button
                 className="pl-5 text-white text-2xl font-bold"
                 aria-label="Login"
-              >
+                >
                 {imageUrl || userInfo?.image ? (
                   <Link href="/user/dashboard">
                     <a className="relative top-1 w-6 h-6">
@@ -126,10 +129,11 @@ const Navbar = () => {
                       />
                     </a>
                   </Link>
-                ) : userInfo?.name ? (
+                ) : 
+                userInfo?.data ? (
                   <Link href="/user/dashboard">
                     <a className="leading-none font-bold font-serif block">
-                      {userInfo?.name[0]}
+                      {userInfo?.data.user.name[0].toUpperCase()}
                     </a>
                   </Link>
                 ) : (

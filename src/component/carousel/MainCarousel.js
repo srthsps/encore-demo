@@ -36,7 +36,7 @@ const MainCarousel = () => {
               <Image
                 layout="responsive"
                 width={950}
-                height={400}
+                height={300}
                 src={item.image}
                 alt={item.title}
                 className="object-cover"

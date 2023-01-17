@@ -14,13 +14,13 @@ const useAddToCart = () => {
   }, []);
 
   const handleAddItem = (product) => {
-    const result = items.find((i) => i.id === product._id);
+    const result = items.find((i) => i.id === product.id);
 
     if (result !== undefined) {
       if (result?.quantity < product?.quantity) {
         const newItem = {
           ...product,
-          id: product._id,
+          id: product.id,
         };
         addItem(newItem, item);
         notifySuccess(`${item} ${product.title} added to cart!`);
@@ -30,7 +30,7 @@ const useAddToCart = () => {
     } else {
       const newItem = {
         ...product,
-        id: product._id,
+        id: product.id,
       };
       addItem(newItem, item);
       notifySuccess(`${item} ${product.title} added to cart!`);
@@ -38,7 +38,7 @@ const useAddToCart = () => {
   };
 
   const handleIncreaseQuantity = (item) => {
-    const result = products?.find((p) => p._id === item.id);
+    const result = products?.find((p) => p.id === item.id);
     if (result) {
       if (item?.quantity < result?.quantity) {
         updateItemQuantity(item.id, item.quantity + 1);

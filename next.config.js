@@ -27,7 +27,7 @@ module.exports = withPWA({
       'fakestoreapi.com',
       'res.cloudinary.com',
       'lh3.googleusercontent.com',
-      '',
+      'fresheropenings.com-',
     ],
   },
 });

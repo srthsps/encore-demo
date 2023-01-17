@@ -8,14 +8,30 @@ import { IoChevronForwardSharp } from 'react-icons/io5';
 import useAsync from '@hooks/useAsync';
 import CategoryServices from '@services/CategoryServices';
 import category from '@services/category';
+import { fetchbrandList } from 'src/store/slice/ProductSlice/BrandListSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchBrandCategoryProducts } from 'src/store/slice/ProductSlice/BrandCategoryList';
 
 const FeatureCategory = () => {
   const router = useRouter();
   // const { data, error } = useAsync(() => CategoryServices.getShowingCategory());
 
+  const dispatch = useDispatch()
+
+  const handleProductID = (id) => {
+    dispatch(fetchBrandCategoryProducts({ brandID : id }))
+    router.push(`search?/${id}`)
+  }
+  
+  useEffect(() => {
+    dispatch(fetchbrandList())
+  }, [])
+
+  const {brandList} = useSelector((state)=>state.brandListSlice)
 
   const error = ''
-  const data = category;
+  const data = brandList;
 
 
   return (
@@ -27,33 +43,31 @@ const FeatureCategory = () => {
       ) : (
         <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6">
           {data?.map((category, i) => (
-            <li className="group" key={i + 1}>
+            <li className="group" key={i}>
               <div
                 onClick={() =>
-                  router.push(
-                    `/search?Category=${category.parent
-                      .toLowerCase()
-                      .replace('&', '')
-                      .split(' ')
-                      .join('-')}`
-                  )
+                  handleProductID(category.id)
+                  // router.push(
+                  //   `/search?Category=${category.id}`
+                  // )
                 }
                 className="flex w-full h-full border border-gray-100 shadow-sm bg-white p-4 cursor-pointer transition duration-200 ease-linear transform group-hover:shadow-lg"
               >
-                <div className="flex items-center">
+                <div className="flex flex-col place-items-center place-content-center ">
                   <div>
-                    <Image
-                      src={category.icon}
-                      alt={category.parent}
-                      width={35}
-                      height={35}
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      width={200}
+                      height={200}
                     />
                   </div>
-                  <div className="pl-4">
+                  <div className="">
                     <h3 className="text-sm text-gray-600 font-serif font-medium leading-tight line-clamp-1 group-hover:text-emerald-500">
-                      {category.parent}
+                      {category.name}
                     </h3>
-                    <ul className="pt-1 mt-1">
+
+                    {/* <ul className="pt-1 mt-1">
                       {category.children.slice(0, 3).map((children) => (
                         <li key={children} className="pt-1">
                           <Link
@@ -72,7 +86,7 @@ const FeatureCategory = () => {
                           </Link>
                         </li>
                       ))}
-                    </ul>
+                    </ul> */}
                   </div>
                 </div>
               </div>

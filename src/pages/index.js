@@ -14,13 +14,23 @@ import ProductCard from '@component/product/ProductCard';
 import MainCarousel from '@component/carousel/MainCarousel';
 import FeatureCategory from '@component/category/FeatureCategory';
 import Loading from '@component/preloader/Loading';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchbrandList } from 'src/store/slice/ProductSlice/BrandListSlice';
 
 const Home = ({ products, popularProducts, discountProducts }) => {
   const router = useRouter();
 
-  const [value, set] = useSessionstorage('products', products);
-  const { isLoading, setIsLoading } = useContext(SidebarContext);
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+    dispatch(fetchbrandList())
+  }, [])
+
+  const { brandList } = useSelector((state) => state.brandListSlice)
+
+  const { isLoading, setIsLoading } = useContext(SidebarContext);
+  const [value, set] = useSessionstorage('products', products);
+  
   useEffect(() => {
     if (router.asPath === '/') {
       setIsLoading(false);
@@ -28,7 +38,7 @@ const Home = ({ products, popularProducts, discountProducts }) => {
       setIsLoading(false);
     }
   }, [router]);
-
+  
   return (
     <>
       {isLoading ? (
@@ -40,12 +50,12 @@ const Home = ({ products, popularProducts, discountProducts }) => {
             <div className="bg-white">
               <div className="mx-auto py-5 max-w-screen-2xl px-3 sm:px-10">
                 <div className="flex w-full">
-                  <div className="flex-shrink-0 xl:pr-6 lg:block w-full lg:w-3/5">
+                  <div className="flex-shrink-0 xl:pr-6 lg:block w-full">
                     <MainCarousel />
                   </div>
-                  <div className="w-full hidden lg:flex">
+                  {/* <div className="w-full hidden lg:flex">
                     <OfferCard />
-                  </div>
+                  </div> */}
                 </div>
                 <div className="bg-orange-100 px-10 py-6 rounded-lg mt-6 hidden lg:block">
                   <Banner />
@@ -88,7 +98,7 @@ const Home = ({ products, popularProducts, discountProducts }) => {
               <div className="flex">
                 <div className="w-full">
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
-                    {popularProducts?.slice(0, 18).map((product) => (
+                    {brandList?.map((product) => (
                       <ProductCard key={product._id} product={product} />
                     ))}
                   </div>
@@ -106,7 +116,7 @@ const Home = ({ products, popularProducts, discountProducts }) => {
             </div>
 
             {/* discounted products */}
-            <div
+            {/* <div
               id="discount"
               className="bg-gray-50 lg:py-16 py-10 mx-auto max-w-screen-2xl px-3 sm:px-10"
             >
@@ -125,13 +135,13 @@ const Home = ({ products, popularProducts, discountProducts }) => {
               <div className="flex">
                 <div className="w-full">
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
-                    {discountProducts?.slice(0, 18).map((product) => (
+                    {productsList?.map((product) => (
                       <ProductCard key={product._id} product={product} />
                     ))}
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </Layout>
       )}

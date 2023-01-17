@@ -107,7 +107,7 @@ const ProductScreen = ({ product, relatedProduct }) => {
                             <span className="font-bold text-gray-600">
                               {product.sku
                                 ? product.sku
-                                : product._id.substring(18, 24)}
+                                : product.id.substring(18, 24)}
                             </span>
                           </p>
                         </div>

@@ -5,7 +5,7 @@ import Error from '@component/form/Error';
 import useLoginSubmit from '@hooks/useLoginSubmit';
 import InputArea from '@component/form/InputArea';
 
-const Login = ({ setShowResetPassword, setModalOpen }) => {
+const Login = ({ setShowResetPassword, setShowVerifyEmail, setModalOpen }) => {
   const { handleSubmit, submitHandler, register, errors, loading } =
     useLoginSubmit(setModalOpen);
 
@@ -25,7 +25,7 @@ const Login = ({ setShowResetPassword, setModalOpen }) => {
           <div className="form-group">
             <InputArea
               register={register}
-              defaultValue="justin@gmail.com"
+              // defaultValue="vishalkunnam124@gmail.com"
               label="Email"
               name="registerEmail"
               type="email"
@@ -37,7 +37,7 @@ const Login = ({ setShowResetPassword, setModalOpen }) => {
           <div className="form-group">
             <InputArea
               register={register}
-              defaultValue="12345678"
+              // defaultValue="1234"
               label="Password"
               name="password"
               type="password"
@@ -57,6 +57,16 @@ const Login = ({ setShowResetPassword, setModalOpen }) => {
               >
                 Forgot password?
               </button>
+
+              <button
+                type="button"
+                onClick={() => setShowVerifyEmail(true)}
+                className=" text-sm text-heading  underline hover:no-underline focus:outline-none"
+                style={{ position: "relative", left: "1rem" }}
+              >
+                Verify Email ?
+              </button>
+
             </div>
           </div>
           <button
