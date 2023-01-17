@@ -30,6 +30,7 @@ const NavBarTop = () => {
 
   const handleLogOut = () => {
     dispatch({ type: 'USER_LOGOUT' });
+    localStorage.removeItem('portal-token')
     Cookies.remove('userInfo');
     Cookies.remove('couponInfo');
     router.push('/');

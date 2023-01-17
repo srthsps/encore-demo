@@ -56,8 +56,8 @@ const FeatureCategory = () => {
                 <div className="flex flex-col place-items-center place-content-center ">
                   <div>
                     <img
-                      src={category.image}
-                      alt={category.name}
+                      src={category.logo}
+                      alt={category.brand_name}
                       width={200}
                       height={200}
                     />

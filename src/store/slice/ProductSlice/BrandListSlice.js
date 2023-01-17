@@ -7,7 +7,7 @@ export const fetchbrandList = createAsyncThunk(
 
         try {
             const response = await api.actionHandler({
-                url: api.brandListURl,
+                url: api.popularBrandListURl,
                 method: "GET",
             });
 
@@ -50,7 +50,7 @@ const brandListSlice = createSlice({
         builder.addCase(fetchbrandList.fulfilled, (state, action) => {
 
             state.brandList = [];
-            action.payload.forEach((item) => state.brandList.push(item));
+            action.payload.data.results.forEach((item) => state.brandList.push(item));
 
             state.brandListFetching = false;
             state.brandListSuccess = true;

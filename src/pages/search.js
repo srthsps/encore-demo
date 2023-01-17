@@ -33,7 +33,7 @@ const Search = ({ products }) => {
           <div className="flex w-full">
             <div className="w-full">
               <div className="w-full grid grid-col gap-4 grid-cols-1 2xl:gap-6 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2">
-                <Card />
+                {/* <Card /> */}
               </div>
               <div className="relative">
                 <CategoryCarousel />
@@ -51,31 +51,34 @@ const Search = ({ products }) => {
                     Sorry, we can not find this product 😞
                   </h2>
                 </div>
-              ) : (
-                <div className="flex justify-between my-3 bg-orange-100 border border-gray-100 rounded p-3">
-                  <h6 className="text-sm font-serif">
-                    Total{' '}
-                    <span className="font-bold">{productData.length}</span>{' '}
-                    items Found
-                  </h6>
-                  <span className="text-sm font-serif">
-                    <select
-                      onChange={(e) => setSortedField(e.target.value)}
-                      className="py-0 text-sm font-serif font-medium block w-full rounded border-0 bg-white pr-10 cursor-pointer focus:ring-0"
-                    >
-                      <option className="px-3" value="All" defaultValue hidden>
-                        Sort By Price
-                      </option>
-                      <option className="px-3" value="Low">
-                        Low to High
-                      </option>
-                      <option className="px-3" value="High">
-                        High to Low
-                      </option>
-                    </select>
-                  </span>
-                </div>
-              )}
+              ) : null
+              
+              // (
+              //   <div className="flex justify-between my-3 bg-orange-100 border border-gray-100 rounded p-3">
+              //     <h6 className="text-sm font-serif">
+              //       Total{' '}
+              //       <span className="font-bold">{productData.length}</span>{' '}
+              //       items Found
+              //     </h6>
+              //     <span className="text-sm font-serif">
+              //       <select
+              //         onChange={(e) => setSortedField(e.target.value)}
+              //         className="py-0 text-sm font-serif font-medium block w-full rounded border-0 bg-white pr-10 cursor-pointer focus:ring-0"
+              //       >
+              //         <option className="px-3" value="All" defaultValue hidden>
+              //           Sort By Price
+              //         </option>
+              //         <option className="px-3" value="Low">
+              //           Low to High
+              //         </option>
+              //         <option className="px-3" value="High">
+              //           High to Low
+              //         </option>
+              //       </select>
+              //     </span>
+              //   </div>
+              // )
+              }
 
               {isLoading ? (
                 <Loading loading={isLoading} />

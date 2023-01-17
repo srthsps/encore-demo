@@ -5,18 +5,17 @@ const actionHandler = (payload) => {
     axios.defaults.headers.common["Content-Type"] = "application/json";
     axios.defaults.headers.common["Accept"] = "application/json";
 
-    // const token = localStorage.getItem("portal-token");
+    const token = localStorage.getItem("portal-token");
+    
+    if (token) {
+        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    }
 
-
-    // if (token) {
-    //     axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-    // }
-
-    // console.log("token:", token);
+    console.log("token:", token);
 
     return new Promise((resolve, reject) => {
-        payload.baseURL = "https://api.escuelajs.co/api/v1";
-        // payload.baseURL = "https://dev.enfono.com/api_encore_backend/api/";
+        // payload.baseURL = "https://api.escuelajs.co/api/v1";
+        payload.baseURL = "https://dev.enfono.com/api_encore_backend/api/";
         // payload.baseURL = "https://fakestoreapi.com/";
 
         axios(payload)
@@ -57,23 +56,15 @@ axios.interceptors.response.use(undefined, function (err) {
 
 export default {
 
-    // baseURL: "",
-
-    /* auth URLs */
-
-    // loginURL: "auth/login/",
-
-    // logoutURL: "auth/logout/",
-
-
-
-
     /* Products Url */
 
     // productListURl: "/shop/brand/",
-    brandListURl: "/categories",
-    brandProductsListURl: "products/?categoryId={id}",
     // productListURl: "products/",
+    popularBrandListURl: "/shop/popular-brands/",
+    brandProductsListURl: "/shop/products/{id}",
+    AllBrandListURl: "/shop/brands/",
+    AddToCartURL: "/shop/cart/add-list",
+    cartListURl: "/shop/cart/add-list",
 
 
 
