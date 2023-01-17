@@ -17,13 +17,13 @@ const useAddToCart = () => {
     const result = items.find((i) => i.id === product.id);
 
     if (result !== undefined) {
-      if (result?.quantity < product?.quantity) {
+      if (result?.minimum_quantity < product?.minimum_quantity) {
         const newItem = {
           ...product,
           id: product.id,
         };
         addItem(newItem, item);
-        notifySuccess(`${item} ${product.title} added to cart!`);
+        notifySuccess(`${item} ${product.brand_name} added to cart!`);
       } else {
         notifyError('No more quantity available for this product!');
       }
@@ -32,16 +32,17 @@ const useAddToCart = () => {
         ...product,
         id: product.id,
       };
+      console.log("price:::", newItem);
       addItem(newItem, item);
-      notifySuccess(`${item} ${product.title} added to cart!`);
+      notifySuccess(`${item} ${product.brand_name} added to cart!`);
     }
   };
 
   const handleIncreaseQuantity = (item) => {
     const result = products?.find((p) => p.id === item.id);
     if (result) {
-      if (item?.quantity < result?.quantity) {
-        updateItemQuantity(item.id, item.quantity + 1);
+      if (item?.minimum_quantity < result?.minimum_quantity) {
+        updateItemQuantity(item.id, item.minimum_quantity + 1);
       } else {
         notifyError('No more quantity available for this product!');
       }

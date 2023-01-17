@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
   const { items, addItem, updateItemQuantity, inCart } = useCart();
 
   const handleAddItem = (p) => {
-    console.log("id:::",p.id)
+    console.log("id:::", p.id)
     const newItem = {
       ...p,
       id: p.id,
@@ -40,21 +40,24 @@ const ProductCard = ({ product }) => {
           <Discount product={product} />
 
           <img
-            src={product.images}
+            src={product.image}
             width={160}
             height={160}
-            alt={product.title}
+            alt={product.brand_name}
             className="object-cover transition duration-150 ease-linear transform group-hover:scale-105"
           />
         </div>
         <div className="w-full px-3 lg:px-4 pb-4 overflow-hidden">
           <div className="relative mb-1">
-            <span className="text-gray-400 font-medium text-xs d-block mb-1">
-              {/* {product.rating.count} */}
-            </span>
             <h2 className="text-heading truncate mb-0 block text-sm font-medium text-gray-600">
-              <span className="line-clamp-2">{product.title}</span>
+              <span className="line-clamp-2">{product.brand}</span>
             </h2>
+            <span className="text-gray-400 font-medium text-xs d-block mb-1">
+              <p>
+                Product Code: {product.product_code}
+              </p>
+
+            </span>
           </div>
 
           <div className="flex justify-between items-center text-heading text-sm sm:text-base space-s-2 md:text-base lg:text-xl">

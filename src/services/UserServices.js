@@ -22,7 +22,7 @@ const UserServices = {
   },
 
   forgetPassword(body) {
-    return requests.put('/user/forget-password', body);
+    return requests.put('/auth/password/forgot/', body);
   },
 
   resetPassword(body) {

@@ -45,10 +45,12 @@ const useLoginSubmit = (setModalOpen, setShowVerifyEmail, setShowVerifyOtp) => {
           router.push(redirect || '/');
           notifySuccess(res.message);
           dispatch({ type: 'USER_LOGIN', payload: res });
+          localStorage.setItem('portal-token',(res.data.token.access))
           console.log("info", res);
           Cookies.set('userInfo', JSON.stringify(res), {
-            expires: cookieTimeOut,
+            
           });
+
         })
         .catch((err) => {
           setLoading(false);

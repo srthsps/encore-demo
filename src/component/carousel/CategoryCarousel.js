@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Navigation } from 'swiper';
@@ -13,23 +13,32 @@ import useAsync from '@hooks/useAsync';
 import CategoryServices from '@services/CategoryServices';
 import { SidebarContext } from '@context/SidebarContext';
 import category from '@services/category';
+import { fetchAllBrandList } from 'src/store/slice/ProductSlice/AllBrandlist';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBrandCategoryProducts } from 'src/store/slice/ProductSlice/BrandCategoryList';
 
 const CategoryCarousel = () => {
   const router = useRouter();
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   // const { data, error } = useAsync(() => CategoryServices.getShowingCategory());
-  const error =''
-  const data = category;
+  const error = ''
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
-  const handleCategoryClick = (category) => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchAllBrandList())
+  }, [])
+
+  const { allBrandList } = useSelector((state) => state.allBrandListSlice)
+
+  const data = allBrandList;
+
+  const handleCategoryClick = (id) => {
+    dispatch(fetchBrandCategoryProducts({ brandID: id }))
     router.push(
-      `/search?Category=${category
-        .toLowerCase()
-        .replace('&', '')
-        .split(' ')
-        .join('-')}`
+      `/search?${id}`
     );
     setIsLoading(!isLoading);
   };
@@ -102,21 +111,21 @@ const CategoryCarousel = () => {
             {data?.map((category, i) => (
               <SwiperSlide key={i + 1} className="group">
                 <div
-                  onClick={() => handleCategoryClick(category.parent)}
-                  className="text-center cursor-pointer p-3 bg-white rounded-lg"
+                  onClick={() => handleCategoryClick(category.id)}
+                  className="text-center cursor-pointer p-3 bg-white rounded-lg flex flex-col justify-center"
                 >
-                  <div className="bg-white p-2 mx-auto w-10 h-10 rounded-full shadow-md">
-                    <Image
-                      src={category.icon}
-                      alt={category.parent}
-                      width={35}
-                      height={35}
-                    />
-                  </div>
+                  {/* <div className="bg-white p-2 mx-auto w-50 h-50  shadow-md"> */}
+                  <img
+                    src={category.logo}
+                    alt={category.brand_name}
+                    width={50}
+                    height={50}
+                  />
+                  {/* </div> */}
 
-                  <h3 className="text-xs text-gray-600 mt-2 font-serif group-hover:text-emerald-500">
-                    {category.parent}
-                  </h3>
+                  <p className="text-xs text-gray-600 mt-2 font-serif group-hover:text-emerald-500">
+                    {category.brand_name}
+                  </p>
                 </div>
               </SwiperSlide>
             ))}

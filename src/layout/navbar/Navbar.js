@@ -14,14 +14,27 @@ import { UserContext } from '@context/UserContext';
 import LoginModal from '@component/modal/LoginModal';
 import CartDrawer from '@component/drawer/CartDrawer';
 import { SidebarContext } from '@context/SidebarContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchcartList } from 'src/store/slice/CartSlice/CartListSlice';
 
 const Navbar = () => {
   const [imageUrl, setImageUrl] = useState('');
   const [searchText, setSearchText] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const { toggleCartDrawer } = useContext(SidebarContext);
-  const { totalItems } = useCart();
+  // const { totalItems } = useCart();
   const router = useRouter();
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchcartList())
+    console.log("kb");
+  }, [])
+  
+  const { cartList } = useSelector((state) => state.cartListSlice)
+
+  console.log("cart--", cartList);
 
   const {
     state: { userInfo },
@@ -37,15 +50,14 @@ const Navbar = () => {
       setSearchText('');
     }
   };
-  
+
   useEffect(() => {
     if (Cookies.get('userInfo')) {
       const user = JSON.parse(Cookies.get('userInfo'));
       setImageUrl(user.image);
     }
   }, []);
-  
-  
+
   return (
     <>
       <CartDrawer />
@@ -58,8 +70,8 @@ const Navbar = () => {
           <div className="top-bar h-16 lg:h-auto flex items-center justify-between py-4 mx-auto">
             <Link href="/">
               <a className="mr-3 lg:mr-12 xl:mr-12 hidden md:hidden lg:block text-white">
-              Encore Powers ecommerce
-                
+                Encore Powers ecommerce
+
                 {/* <Image
                   width={110}
                   height={40}
@@ -107,7 +119,8 @@ const Navbar = () => {
                 className="relative px-5 text-white text-2xl font-bold"
               >
                 <span className="absolute z-10 top-0 right-0 inline-flex items-center justify-center p-1 h-5 w-5 text-xs font-medium leading-none text-red-100 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">
-                  {totalItems}
+                  {/* {totalItems} */}
+                  {cartList.count}
                 </span>
                 <FiShoppingCart className="w-6 h-6 drop-shadow-xl" />
               </button>
@@ -116,7 +129,7 @@ const Navbar = () => {
               <button
                 className="pl-5 text-white text-2xl font-bold"
                 aria-label="Login"
-                >
+              >
                 {imageUrl || userInfo?.image ? (
                   <Link href="/user/dashboard">
                     <a className="relative top-1 w-6 h-6">
@@ -129,18 +142,18 @@ const Navbar = () => {
                       />
                     </a>
                   </Link>
-                ) : 
-                userInfo?.data ? (
-                  <Link href="/user/dashboard">
-                    <a className="leading-none font-bold font-serif block">
-                      {userInfo?.data.user.name[0].toUpperCase()}
-                    </a>
-                  </Link>
-                ) : (
-                  <span onClick={() => setModalOpen(!modalOpen)}>
-                    <FiUser className="w-6 h-6 drop-shadow-xl" />
-                  </span>
-                )}
+                ) :
+                  userInfo?.data ? (
+                    <Link href="/user/dashboard">
+                      <a className="leading-none font-bold font-serif block">
+                        {userInfo?.data.user.name[0].toUpperCase()}
+                      </a>
+                    </Link>
+                  ) : (
+                    <span onClick={() => setModalOpen(!modalOpen)}>
+                      <FiUser className="w-6 h-6 drop-shadow-xl" />
+                    </span>
+                  )}
               </button>
             </div>
           </div>

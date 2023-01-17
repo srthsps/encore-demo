@@ -82,7 +82,7 @@ const Home = ({ products, popularProducts, discountProducts }) => {
             </div>
 
             {/* popular products */}
-            <div className="bg-gray-50 lg:py-16 py-10 mx-auto max-w-screen-2xl px-3 sm:px-10">
+            {/* <div className="bg-gray-50 lg:py-16 py-10 mx-auto max-w-screen-2xl px-3 sm:px-10">
               <div className="mb-10 flex justify-center">
                 <div className="text-center w-full lg:w-2/5">
                   <h2 className="text-xl lg:text-2xl mb-2 font-serif font-semibold">
@@ -99,7 +99,7 @@ const Home = ({ products, popularProducts, discountProducts }) => {
                 <div className="w-full">
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
                     {brandList?.map((product) => (
-                      <ProductCard key={product._id} product={product} />
+                      <ProductCard key={product.id} product={product} />
                     ))}
                   </div>
                 </div>
@@ -107,13 +107,13 @@ const Home = ({ products, popularProducts, discountProducts }) => {
             </div>
 
             {/* promotional banner card */}
-            <div className="block mx-auto max-w-screen-2xl">
+            {/* <div className="block mx-auto max-w-screen-2xl">
               <div className="mx-auto max-w-screen-2xl px-4 sm:px-10">
                 <div className="lg:p-16 p-6 bg-emerald-500 shadow-sm border rounded-lg">
                   <CardTwo />
                 </div>
               </div>
-            </div>
+            </div> */} */
 
             {/* discounted products */}
             {/* <div

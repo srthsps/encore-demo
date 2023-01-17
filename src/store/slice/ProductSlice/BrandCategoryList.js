@@ -4,11 +4,13 @@ import api from "../../../api";
 export const fetchBrandCategoryProducts = createAsyncThunk(
   "Brand-category",
   async ({ payload, brandID }, { rejectWithValue }) => {
+    console.log("id:::::",brandID);
     try {
       const response = await api.actionHandler({
         url: api.brandProductsListURl.replace("{id}", brandID),
         method: "GET",
         data: payload,
+
       });
 
       let data = await response;
@@ -52,7 +54,7 @@ const BrandCategoryList = createSlice({
     builder
       .addCase(fetchBrandCategoryProducts.fulfilled, (state, action) => {
         state.brandCategoryList = [];
-        action.payload.forEach((items) => {
+        action.payload.data.results.forEach((items) => {
           state.brandCategoryList.push(items);
         });
         state.BrandCategoryProductsFetching = false;
