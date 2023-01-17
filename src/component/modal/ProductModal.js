@@ -20,9 +20,9 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
   const diaptach = useDispatch()
 
   const handleAddItem = (id) => {
-    const product ={
-      product:id
-    } 
+    const product = {
+      product: id
+    }
     diaptach(fetchAddToCart({ payload: product }))
   }
 
