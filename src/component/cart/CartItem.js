@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from 'react-use-cart';
 import { FiPlus, FiMinus, FiTrash2 } from 'react-icons/fi';
-
+import { useSelector } from 'react-redux';
 //internal import
 import useAddToCart from '@hooks/useAddToCart';
 import { SidebarContext } from '@context/SidebarContext';
@@ -23,8 +23,7 @@ const CartItem = () => {
   return (
     <div className="group w-full h-auto flex justify-start items-center bg-white py-3 px-4 border-b hover:bg-gray-50 transition-all border-gray-100 relative last:border-b-0">
       {
-        cartList.results.map((item) => {
-          console.log("it", item);
+        cartList?.results?.map((item) => {
           return (
             <>
               <div className="relative flex rounded-full border border-gray-100 shadow-sm overflow-hidden flex-shrink-0 cursor-pointer mr-4">
