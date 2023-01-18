@@ -51,23 +51,19 @@ const AddToCartSlice = createSlice({
     },
 
     extraReducers: (builder) => {
-        builder
-            .addCase(fetchAddToCart.fulfilled, (state, action) => {
-                state.brandCategoryList = [];
-                action.payload.data.results.forEach((items) => {
-                    state.brandCategoryList.push(items);
-                });
+        builder.addCase(fetchAddToCart.fulfilled, (state, action) => {
+                // action.payload.data.results.forEach((items) => {
+                //     state.AddToCartList.push(items);
+                // });
+                    console.log("adc::", action.payload);
                 state.AddToCartFetching = false;
                 state.AddToCartSuccess = true;
-                console.log("adc::", state.AddToCartList);
                 return state;
-            })
-            .addCase(fetchAddToCart.rejected, (state, action) => {
+            }).addCase(fetchAddToCart.rejected, (state, action) => {
                 state.AddToCartFetching = false;
                 state.AddToCartError = true;
                 state.AddToCartErrorMessage = action?.payload;
-            })
-            .addCase(fetchAddToCart.pending, (state) => {
+            }).addCase(fetchAddToCart.pending, (state) => {
                 state.AddToCartFetching = true;
             });
     },

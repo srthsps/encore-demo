@@ -24,10 +24,10 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
       product: id
     }
     diaptach(fetchAddToCart({ payload: product }))
+    setModalOpen(false);
   }
 
   const handleMoreInfo = (id) => {
-    setModalOpen(false);
 
     router.push(`/product/${id}`);
     setIsLoading(!isLoading);
@@ -104,8 +104,8 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
               <div className="flex items-center justify-between space-s-3 sm:space-s-4 w-full">
                 <div>
                   <span className="font-serif font-semibold py-1 text-sm d-block">
-                    <span className="text-gray-700">Category:</span>{' '}
-                    <span className="text-gray-500">{product.category}</span>
+                    <span className="text-gray-700">Product Code:</span>{' '}
+                    <span className="text-gray-500">{product.product_code}</span>
                   </span>
 
                   <Tags product={product} />
