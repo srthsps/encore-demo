@@ -9,12 +9,27 @@ import CartItem from '@component/cart/CartItem';
 import LoginModal from '@component/modal/LoginModal';
 import { UserContext } from '@context/UserContext';
 import { SidebarContext } from '@context/SidebarContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchcartList } from 'src/store/slice/CartSlice/CartListSlice';
+import { useEffect } from 'react';
 
 const Cart = () => {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const { isEmpty, items, cartTotal } = useCart();
   const { toggleCartDrawer, closeCartDrawer } = useContext(SidebarContext);
+
+  const { AddToCartSuccess, AddToCartFetching } = useSelector(
+    (state) => state.AddToCartSlice
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchcartList());
+  }, [AddToCartSuccess, AddToCartFetching]);
+
+  const { cartList } = useSelector((state) => state.cartListSlice);
 
   const {
     state: { userInfo },
@@ -65,7 +80,7 @@ const Cart = () => {
           </button>
         </div>
         <div className="overflow-y-scroll flex-grow scrollbar-hide w-full max-h-full">
-          {isEmpty && (
+          {cartList.results?.length <= 0 ? (
             <div className="flex flex-col h-full justify-center">
               <div className="flex flex-col items-center">
                 <div className="flex justify-center items-center w-20 h-20 rounded-full bg-emerald-100">
@@ -82,11 +97,11 @@ const Cart = () => {
                 </p>
               </div>
             </div>
-          )}
+          ) :
 
-          {items.map((item, i) => (
-            <CartItem key={i + 1} item={item} />
-          ))}
+            cartList.results?.map((item, i) => (
+              <CartItem key={i + 1} item={item} />
+            ))}
         </div>
         <div className="mx-5 my-3">
           {items.length <= 0 ? (

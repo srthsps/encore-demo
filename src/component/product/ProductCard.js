@@ -1,23 +1,47 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCart } from 'react-use-cart';
 import { IoBagAddSharp, IoAdd, IoRemove } from 'react-icons/io5';
 
 import Price from '@component/common/Price';
 import Discount from '@component/common/Discount';
 import ProductModal from '@component/modal/ProductModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAddToCart } from 'src/store/slice/CartSlice/AddToCartSlice';
+import { fetchcartList } from 'src/store/slice/CartSlice/CartListSlice';
+import { notifySuccess } from '@utils/toast';
 
 const ProductCard = ({ product }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const { items, addItem, updateItemQuantity, inCart } = useCart();
+  // const { items, addItem, updateItemQuantity, inCart } = useCart();
 
-  const handleAddItem = (p) => {
-    console.log("id:::", p.id)
-    const newItem = {
-      ...p,
-      id: p.id,
-    };
-    addItem(newItem);
-  };
+  const { AddToCartSuccess, AddToCartFetching } = useSelector((state) => state.AddToCartSlice)
+  const dispatch = useDispatch()
+  console.log("kb", AddToCartFetching);
+
+  useEffect(() => {
+    dispatch(fetchcartList())
+  }, [AddToCartSuccess, AddToCartFetching])
+
+
+  // const handleAddItem = (p) => {
+  //   console.log("id:::", p.id)
+  //   const newItem = {
+  //     ...p,
+  //     id: p.id,
+  //   };
+  //   addItem(newItem);
+  // };
+
+  const diaptach = useDispatch()
+
+  const handleAddItem = (id) => {
+    const productID = {
+      product: id
+    }
+
+    diaptach(fetchAddToCart({ payload: productID }))
+    notifySuccess("Product added your Cart.")
+  }
 
   return (
     <>
@@ -62,9 +86,20 @@ const ProductCard = ({ product }) => {
 
           <div className="flex justify-between items-center text-heading text-sm sm:text-base space-s-2 md:text-base lg:text-xl">
             <Price product={product} card={true} />
-            {inCart(product.id) ? (
+            <button
+              onClick={() => handleAddItem(product.id)}
+              disabled={product.quantity < 1}
+              aria-label="cart"
+              className="h-9 w-9 flex items-center justify-center border border-gray-200 rounded text-emerald-500 hover:border-emerald-500 hover:bg-emerald-500 hover:text-white transition-all"
+            >
+              {' '}
+              <span className="text-xl">
+                <IoBagAddSharp />
+              </span>{' '}
+            </button>
+            {/* {cartList?.results? (
               <div>
-                {items.map(
+                {cartList?.results?.map(
                   (item) =>
                     item.id === product.id && (
                       <div
@@ -99,7 +134,7 @@ const ProductCard = ({ product }) => {
               </div>
             ) : (
               <button
-                onClick={() => handleAddItem(product)}
+                onClick={() => handleAddItem(product.id)}
                 disabled={product.quantity < 1}
                 aria-label="cart"
                 className="h-9 w-9 flex items-center justify-center border border-gray-200 rounded text-emerald-500 hover:border-emerald-500 hover:bg-emerald-500 hover:text-white transition-all"
@@ -109,7 +144,7 @@ const ProductCard = ({ product }) => {
                   <IoBagAddSharp />
                 </span>{' '}
               </button>
-            )}
+            )} */}
           </div>
         </div>
       </div>
