@@ -4,8 +4,6 @@ const withPWA = require('next-pwa')({
   register: true,
   runtimeCaching,
   buildExcludes: [/middleware-manifest\.json$/],
-  scope: '/',
-  sw: 'service-worker.js',
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
 });
@@ -16,6 +14,7 @@ module.exports = withPWA({
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
+
   },
 
   images: {
@@ -30,6 +29,7 @@ module.exports = withPWA({
       'fresheropenings.com-',
     ],
   },
+  output: "standalone"
 });
 
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
