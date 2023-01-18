@@ -79,7 +79,7 @@ const CartItem = ({ item }) => {
             </button>
           </div>
           <button
-            onClick={() => removeItem(item.id)}
+            // onClick={() => removeItem(item.id)}
             className="hover:text-red-600 text-red-400 text-lg cursor-pointer"
           >
             <FiTrash2 />
