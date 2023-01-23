@@ -19,18 +19,23 @@ const Cart = () => {
   const { isEmpty, items, cartTotal } = useCart();
   const { toggleCartDrawer, closeCartDrawer } = useContext(SidebarContext);
 
-  const { AddToCartSuccess, AddToCartFetching } = useSelector(
-    (state) => state.AddToCartSlice
-  );
+
+
+  const { AddToCartSuccess, AddToCartFetching } = useSelector((state) => state.AddToCartSlice);
+  const { CartDeleteSuccess } = useSelector((state) => state.CartDeleteSlice);
+  const { quantityIncrementFetching } = useSelector((state) => state.quantityIncrementSlice)
+  const { quantityDecrementFetching } = useSelector((state) => state.quantityDecrementSlice)
 
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     dispatch(fetchcartList());
-  }, [AddToCartSuccess, AddToCartFetching]);
+  }, [AddToCartSuccess, AddToCartFetching, CartDeleteSuccess, quantityIncrementFetching, quantityDecrementFetching]);
 
-  const { cartList } = useSelector((state) => state.cartListSlice);
+  const { cartList } = useSelector((state) => state.cartListSlice)
 
+  console.log("cart amt", cartList);
   const {
     state: { userInfo },
   } = useContext(UserContext);
@@ -40,18 +45,34 @@ const Cart = () => {
       toggleCartDrawer();
       setModalOpen(!modalOpen);
     }
+    router.push('/Login')
   };
+
+  const handelCheckOut = () => {
+    if (userInfo) {
+
+      router.push("/checkout")
+      toggleCartDrawer();
+      closeCartDrawer
+    }
+    else {
+      setModalOpen(!modalOpen)
+      toggleCartDrawer();
+      closeCartDrawer
+    }
+  }
 
   const checkoutClass = (
     <button
-      onClick={closeCartDrawer}
-      className="w-full py-3 px-3 rounded-lg bg-emerald-500 hover:bg-emerald-600 flex items-center justify-between bg-heading text-sm sm:text-base text-white focus:outline-none transition duration-300"
+      onClick={() => handelCheckOut()}
+      className="w-full py-3 px-3 rounded-lg bg-cyan-500 hover:bg-cyan-600 flex items-center justify-between bg-heading text-sm sm:text-base text-white focus:outline-none transition duration-300"
     >
       <span className="align-middle font-medium font-serif">
         Proceed To Checkout
       </span>
-      <span className="rounded-lg font-bold font-serif py-2 px-3 bg-white text-emerald-600">
-        ${cartTotal.toFixed(2)}
+      <span className="rounded-lg font-bold font-serif py-2 px-3 bg-white text-cyan-600">
+        ₹{cartList.sub_total}
+        {/* ${cartTotal.toFixed(2)} */}
       </span>
     </button>
   );
@@ -83,8 +104,8 @@ const Cart = () => {
           {cartList.results?.length <= 0 ? (
             <div className="flex flex-col h-full justify-center">
               <div className="flex flex-col items-center">
-                <div className="flex justify-center items-center w-20 h-20 rounded-full bg-emerald-100">
-                  <span className="text-emerald-600 text-4xl block">
+                <div className="flex justify-center items-center w-20 h-20 rounded-full bg-cyan-100">
+                  <span className="text-cyan-600 text-4xl block">
                     <IoBagHandle />
                   </span>
                 </div>

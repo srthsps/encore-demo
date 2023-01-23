@@ -29,28 +29,28 @@ const Footer = () => {
             <ul className="text-sm flex flex-col space-y-3">
               <li className="flex items-baseline">
                 <Link href="/about-us">
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     About Us
                   </a>
                 </Link>
               </li>
               <li className="flex items-baseline">
                 <Link href="/contact-us">
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Contact us
                   </a>
                 </Link>
               </li>
               <li className="flex items-baseline">
                 <Link href="#">
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Careers
                   </a>
                 </Link>
               </li>
               <li className="flex items-baseline">
                 <Link href="#">
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Latest news
                   </a>
                 </Link>
@@ -64,7 +64,7 @@ const Footer = () => {
             <ul className="text-sm lg:text-15px flex flex-col space-y-3">
               <li className="flex items-baseline">
                 <Link href="/search?Category=fish--meat">
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Fish & Meat
                   </a>
                 </Link>
@@ -72,21 +72,21 @@ const Footer = () => {
 
               <li className="flex items-baseline">
                 <Link href="/search?Category=drinks">
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Soft Drinks
                   </a>
                 </Link>
               </li>
               <li className="flex items-baseline">
                 <Link href="search?Category=baby-care">
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Baby Care
                   </a>
                 </Link>
               </li>
               <li className="flex items-baseline">
                 <Link href="search?Category=beauty--health">
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Beauty & Health
                   </a>
                 </Link>
@@ -100,21 +100,21 @@ const Footer = () => {
             <ul className="text-sm lg:text-15px flex flex-col space-y-3">
               <li className="flex items-baseline">
                 <Link href={`${userInfo?.email ? '/user/dashboard' : '#'}`}>
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Dashboard
                   </a>
                 </Link>
               </li>
               <li className="flex items-baseline">
                 <Link href={`${userInfo?.email ? '/user/my-orders' : '#'}`}>
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     My Orders
                   </a>
                 </Link>
               </li>
               <li className="flex items-baseline">
                 <Link href={`${userInfo?.email ? '/user/dashboard' : '#'}`}>
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Recent Orders
                   </a>
                 </Link>
@@ -123,7 +123,7 @@ const Footer = () => {
                 <Link
                   href={`${userInfo?.email ? '/user/update-profile' : '#'}`}
                 >
-                  <a className="text-gray-600 inline-block w-full hover:text-emerald-500">
+                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Updated Profile
                   </a>
                 </Link>
@@ -229,7 +229,7 @@ const Footer = () => {
               <p className="text-base leading-7 font-medium block">
                 Call Us Today!
               </p>
-              <h5 className="text-2xl font-bold text-emerald-500 leading-7">+012345-67900</h5>
+              <h5 className="text-2xl font-bold text-cyan-600 leading-7">+012345-67900</h5>
             </div>
             <div className="col-span-1 hidden lg:block md:block">
               <ul className="lg:text-right">
@@ -250,14 +250,14 @@ const Footer = () => {
 
       <div className="mx-auto max-w-screen-2xl px-3 sm:px-10 flex justify-center py-4">
         <p className="text-sm text-gray-500 leading-6">
-          Copyright 2022 @{' '}
+          Copyright 2023 @{' '}
           <Link href="https://themeforest.net/user/htmllover">
             <a
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-500"
+              className="text-cyan-600"
             >
-              HtmlLover
+              Enfono
             </a>
           </Link>
           , All rights reserved.

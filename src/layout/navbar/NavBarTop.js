@@ -61,7 +61,7 @@ const NavBarTop = () => {
               We are available 24/7, Need help? Call Us:{' '}
               <a
                 href="tel:+012345609"
-                className="font-bold text-emerald-500 ml-1"
+                className="font-bold text-cyan-600 ml-1"
               >
                 +01234560352
               </a>
@@ -69,16 +69,16 @@ const NavBarTop = () => {
 
             <div className="lg:text-right flex items-center">
               <Link href="/about-us">
-                <a className="font-medium hover:text-emerald-600">About Us</a>
+                <a className="font-medium hover:text-cyan-400">About Us</a>
               </Link>
               <span className="mx-2">|</span>
               <Link href="/contact-us">
-                <a className="font-medium hover:text-emerald-600">Contact Us</a>
+                <a className="font-medium hover:text-cyan-400">Contact Us</a>
               </Link>
               <span className="mx-2">|</span>
               <button
                 onClick={handleModal}
-                className="font-medium hover:text-emerald-600"
+                className="font-medium hover:text-cyan-400"
               >
                 My account
               </button>
@@ -87,7 +87,7 @@ const NavBarTop = () => {
                 userInfo?.data ?
                   (<button
                     onClick={handleLogOut}
-                    className="flex items-center font-medium hover:text-emerald-600"
+                    className="flex items-center font-medium hover:text-cyan-400"
                   >
                     <span className="mr-1">
                       <FiUser />
@@ -98,7 +98,7 @@ const NavBarTop = () => {
                   (
                     <button
                       onClick={() => handleLogin()}
-                      className="flex items-center font-medium hover:text-emerald-600"
+                      className="flex items-center font-medium hover:text-cyan-400"
                     >
                       <span className="mr-1">
                         <FiUser />

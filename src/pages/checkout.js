@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { CardElement } from '@stripe/react-stripe-js';
 import Link from 'next/link';
@@ -19,6 +19,9 @@ import InputArea from '@component/form/InputArea';
 import InputShipping from '@component/form/InputShipping';
 import InputPayment from '@component/form/InputPayment';
 import useCheckoutSubmit from '@hooks/useCheckoutSubmit';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchcartList } from 'src/store/slice/CartSlice/CartListSlice';
+import { useEffect } from 'react';
 
 const Checkout = () => {
   const {
@@ -42,6 +45,39 @@ const Checkout = () => {
     cartTotal,
     isCheckoutSubmit,
   } = useCheckoutSubmit();
+
+  console.log("checkout::::", register);
+
+
+  const { AddToCartSuccess, AddToCartFetching } = useSelector((state) => state.AddToCartSlice);
+  const { CartDeleteSuccess } = useSelector((state) => state.CartDeleteSlice);
+  const {quantityIncrementFetching} = useSelector((state)=> state.quantityIncrementSlice)
+  const {quantityDecrementFetching} = useSelector((state)=> state.quantityDecrementSlice)
+
+  // state 
+
+  const[first_name, setFirstName] = useState("")
+  const [last_name, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [street_address, setStreetAddress] = useState("")
+  const [district, setDistrict] = useState("")
+  const [city, setCity] = useState("")
+  const [country, setCountry] = useState("")
+  const [zipcode, setZipCode] = useState("")
+  const [state, setState] = useState("")
+
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(fetchcartList());
+  }, [AddToCartSuccess, AddToCartFetching,CartDeleteSuccess,quantityIncrementFetching,quantityDecrementFetching]);
+
+  const { cartList,cartItems } = useSelector((state) => state.cartListSlice)
+
+
+
 
   return (
     <>
@@ -109,13 +145,24 @@ const Checkout = () => {
                     </h2>
 
                     <div className="grid grid-cols-6 gap-6 mb-8">
-                      <div className="col-span-6">
+                      <div className="col-span-3">
                         <InputArea
                           register={register}
                           label="Street address"
                           name="address"
                           type="text"
                           placeholder="123 Boulevard Rd, Beverley Hills"
+                        />
+                        <Error errorName={errors.address} />
+                      </div>
+
+                      <div className="col-span-3">
+                        <InputArea
+                          register={register}
+                          label="District"
+                          name="district"
+                          type="text"
+                          placeholder="District"
                         />
                         <Error errorName={errors.address} />
                       </div>
@@ -154,8 +201,8 @@ const Checkout = () => {
                       </div>
                     </div>
 
-                    <Label label="Shipping Cost" />
-                    <div className="grid grid-cols-6 gap-6">
+                    {/* <Label label="Shipping Cost" /> */}
+                    {/* <div className="grid grid-cols-6 gap-6">
                       <div className="col-span-6 sm:col-span-3">
                         <InputShipping
                           handleShippingCost={handleShippingCost}
@@ -177,10 +224,10 @@ const Checkout = () => {
                         />
                         <Error errorName={errors.shippingOption} />
                       </div>
-                    </div>
+                    </div> */}
                   </div>
 
-                  <div className="form-group mt-12">
+                  {/* <div className="form-group mt-12">
                     <h2 className="font-semibold font-serif text-base text-gray-700 pb-3">
                       03. Payment Details
                     </h2>
@@ -213,7 +260,7 @@ const Checkout = () => {
                         <Error errorName={errors.paymentMethod} />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="grid grid-cols-6 gap-4 lg:gap-6 mt-10">
                     <div className="col-span-6 sm:col-span-3">
@@ -230,7 +277,7 @@ const Checkout = () => {
                       <button
                         type="submit"
                         disabled={isEmpty || !stripe || isCheckoutSubmit}
-                        className="bg-emerald-500 hover:bg-emerald-600 border border-emerald-500 transition-all rounded py-3 text-center text-sm font-serif font-medium text-white flex justify-center w-full"
+                        className="bg-cyan-500 hover:bg-cyan-600 border border-cyan-500 transition-all rounded py-3 text-center text-sm font-serif font-medium text-white flex justify-center w-full"
                       >
                         {isCheckoutSubmit ? (
                           <span className="flex justify-center text-center">
@@ -267,7 +314,7 @@ const Checkout = () => {
                 </h2>
 
                 <div className="overflow-y-scroll flex-grow scrollbar-hide w-full max-h-64 bg-gray-50 block">
-                  {items.map((item) => (
+                  {cartItems.map((item) => (
                     <CartItem key={item.id} item={item} />
                   ))}
 
@@ -286,9 +333,9 @@ const Checkout = () => {
                 <div className="flex items-center mt-4 py-4 lg:py-4 text-sm w-full font-semibold text-heading last:border-b-0 last:text-base last:pb-0">
                   <form className="w-full">
                     {couponInfo.couponCode ? (
-                      <span className="bg-emerald-50 px-4 py-3 leading-tight w-full rounded-md flex justify-between">
+                      <span className="bg-cyan-50 px-4 py-3 leading-tight w-full rounded-md flex justify-between">
                         {' '}
-                        <p className="text-emerald-600">Coupon Applied </p>{' '}
+                        <p className="text-cyan-600">Coupon Applied </p>{' '}
                         <span className="text-red-500 text-right">
                           {couponInfo.couponCode}
                         </span>
@@ -299,11 +346,11 @@ const Checkout = () => {
                           ref={couponRef}
                           type="text"
                           placeholder="Input your coupon code"
-                          className="form-input py-2 px-3 md:px-4 w-full appearance-none transition ease-in-out border text-input text-sm rounded-md h-12 duration-200 bg-white border-gray-200 focus:ring-0 focus:outline-none focus:border-emerald-500 placeholder-gray-500 placeholder-opacity-75"
+                          className="form-input py-2 px-3 md:px-4 w-full appearance-none transition ease-in-out border text-input text-sm rounded-md h-12 duration-200 bg-white border-gray-200 focus:ring-0 focus:outline-none focus:border-cyan-500 placeholder-gray-500 placeholder-opacity-75"
                         />
                         <button
                           onClick={handleCouponCode}
-                          className="md:text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold text-center justify-center border border-gray-200 rounded-md placeholder-white focus-visible:outline-none focus:outline-none px-5 md:px-6 lg:px-8 py-3 md:py-3.5 lg:py-3 mt-3 sm:mt-0 sm:ml-3 md:mt-0 md:ml-3 lg:mt-0 lg:ml-3 hover:text-white hover:bg-emerald-500 h-12 text-sm lg:text-base w-full sm:w-auto"
+                          className="md:text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold text-center justify-center border border-gray-200 rounded-md placeholder-white focus-visible:outline-none focus:outline-none px-5 md:px-6 lg:px-8 py-3 md:py-3.5 lg:py-3 mt-3 sm:mt-0 sm:ml-3 md:mt-0 md:ml-3 lg:mt-0 lg:ml-3 hover:text-white hover:bg-cyan-500 h-12 text-sm lg:text-base w-full sm:w-auto"
                         >
                           Apply
                         </button>

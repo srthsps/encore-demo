@@ -14,9 +14,9 @@ const actionHandler = (payload) => {
   console.log("token:", token);
 
   return new Promise((resolve, reject) => {
-    // payload.baseURL = "https://api.escuelajs.co/api/v1";
+
     payload.baseURL = "https://dev.enfono.com/api_encore_backend/api/";
-    // payload.baseURL = "https://fakestoreapi.com/";
+
 
     axios(payload)
       .then((response) => {
@@ -54,15 +54,25 @@ axios.interceptors.response.use(undefined, function (err) {
 });
 
 export default {
-  /* Products Url */
 
-  // productListURl: "/shop/brand/",
-  // productListURl: "products/",
-  popularBrandListURl: "/shop/popular-brands/",
-  brandProductsListURl: "/shop/products/{id}",
-  AllBrandListURl: "/shop/brands/",
-  AddToCartURL: "/shop/cart/add-list",
-  cartListURl: "/shop/cart/add-list",
+
+  // Brand
+  popularBrandListURl: "shop/popular-brands/",
+  brandProductsListURl: "shop/products/{id}",
+  AllBrandListURl: "shop/brands/",
+
+  // cart
+  AddToCartURL: "shop/cart/add",
+  cartListURl: "shop/cart/list",
+  cartDeleteURl: "shop/cart/{id}",
+  quantityIncrementURL: "shop/cart/{id}",
+  quantityDecrementURL: "/shop/cart/remove/{id}",
+
+  // Carousel
+  carouselListURL: "shop/carousels/",
+
+  // checkout
+  placeOrderURL: "shop/order/",
 
   actionHandler,
 };

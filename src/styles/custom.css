@@ -320,7 +320,7 @@ p:not(:last-of-type) {
 .category-slider button.prev,
 .category-slider button.next {
   text-align: center;
-  background-color: #34d399;
+  background-color: #06B6D4;
   color: #ffffff;
   margin: 15px 2px 0 2px;
   position: absolute;
@@ -338,7 +338,7 @@ p:not(:last-of-type) {
 }
 .category-slider button.next:hover,
 .category-slider button.prev {
-  background-color: #10b981;
+  background-color: #06B6D4;
 }
 .category-slider button.prev svg,
 .category-slider button.next svg {
@@ -376,8 +376,8 @@ p:not(:last-of-type) {
   font-weight: 500;
 }
 .page-previous-link:hover {
-  border: 1px solid #10b981;
-  background-color: #10b981;
+  border: 1px solid #06B6D4;
+  background-color: #06B6D4;
   color: #fff;
 }
 .page-next-link {
@@ -387,8 +387,8 @@ p:not(:last-of-type) {
   font-weight: 500;
 }
 .page-next-link:hover {
-  border: 1px solid #10b981;
-  background-color: #10b981;
+  border: 1px solid #06B6D4;
+  background-color: #06B6D4;
   color: #fff;
 }
 .page--link:hover {
@@ -397,7 +397,7 @@ p:not(:last-of-type) {
 .activePagination {
   text-align: center;
   border-radius: 3px;
-  background: #10b981;
-  border: 1px solid #10b981;
+  background: #06B6D4;
+  border: 1px solid #06B6D4;
   color: #fff;
 }

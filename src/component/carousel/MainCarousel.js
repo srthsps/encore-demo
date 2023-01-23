@@ -8,9 +8,18 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 //internal import
-import { sliderData } from '@utils/data';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchcarouselList } from 'src/store/slice/Carousel/carouselListSlice';
+import { useEffect } from 'react';
 
 const MainCarousel = () => {
+  const dipatch = useDispatch()
+
+  useEffect(() => {
+    dipatch(fetchcarouselList())
+  }, [])
+  
+  const {carouselList} = useSelector((state)=>state.carouselListSlice)
   return (
     <>
       <Swiper
@@ -27,22 +36,22 @@ const MainCarousel = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {sliderData.map((item, i) => (
+        {carouselList.map((item, i) => (
           <SwiperSlide
-            className="h-full relative rounded-lg overflow-hidden"
+            className="h-full w-full relative rounded-lg overflow-hidden"
             key={i + 1}
           >
             <div className="text-sm text-gray-600 hover:text-emerald-dark">
-              <Image
+              <img
                 layout="responsive"
                 width={950}
                 height={300}
                 src={item.image}
-                alt={item.title}
-                className="object-cover"
+                alt="not found"
+                className="object-cover w-full"
               />
             </div>
-            <div className="absolute top-0 left-0 z-10 p-r-16 flex-col flex w-full h-full place-items-start justify-center">
+            {/* <div className="absolute top-0 left-0 z-10 p-r-16 flex-col flex w-full h-full place-items-start justify-center">
               <div className="pl-4 pr-12 sm:pl-10 sm:pr-16 w-10/12 lg:w-8/12 xl:w-7/12">
                 <h1 className="mb-2 font-serif text-xl sm:text-lg md:text-2xl line-clamp-1 md:line-clamp-none  lg:line-clamp-none  lg:text-3xl font-bold text-gray-800">
                   {item.title}
@@ -56,7 +65,7 @@ const MainCarousel = () => {
                   </a>
                 </Link>
               </div>
-            </div>
+            </div> */}
           </SwiperSlide>
         ))}
       </Swiper>
