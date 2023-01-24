@@ -42,7 +42,7 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
   // const { handleAddItem, setItem, item } = useAddToCart();
   const diaptach = useDispatch()
 
-  const handleAddItem = (id,stock) => {
+  const handleAddItem = (id, stock) => {
     const product = {
       product: id
     }
@@ -142,9 +142,9 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
                   </button>
                 </div> */}
                 <button
-                  onClick={() => handleAddItem(product.id,product.out_of_stock)}
+                  onClick={() => handleAddItem(product.id, product.out_of_stock)}
                   disabled={product.quantity < 1}
-                  className="text-sm ml-0 leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-serif text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none text-white px-4 ml-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white bg-cyan-600 hover:bg-cyan-500 w-full h-12"
+                  className="text-sm  leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-serif text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none text-white px-4 ml-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white bg-cyan-600 hover:bg-cyan-500 w-full h-12"
                 >
                   Add To Cart
                 </button>

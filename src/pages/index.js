@@ -11,9 +11,8 @@ import ProductServices from '@services/ProductServices';
 import MainCarousel from '@component/carousel/MainCarousel';
 import Loading from '@component/preloader/Loading';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { fetchpopularpopularBrand } from 'src/store/slice/ProductSlice/popularBrandListSlice';
-import PopularBrand from '@component/Brands/popularBrand';
+import PopularBrand from '@component/Brands/PopularBrand';
 import AllBrands from '@component/Brands/AllBrands';
 import { fetchAllBrandList } from 'src/store/slice/ProductSlice/AllBrandlist';
 
