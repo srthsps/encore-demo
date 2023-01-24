@@ -1,27 +1,32 @@
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import { CardElement } from '@stripe/react-stripe-js';
-import Link from 'next/link';
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import { CardElement } from "@stripe/react-stripe-js";
+import Link from "next/link";
 import {
   IoReturnUpBackOutline,
   IoArrowForward,
   IoBagHandle,
   IoWalletSharp,
-} from 'react-icons/io5';
-import { ImCreditCard } from 'react-icons/im';
+} from "react-icons/io5";
+import { ImCreditCard } from "react-icons/im";
 
 //internal import
-import Layout from '@layout/Layout';
-import Label from '@component/form/Label';
-import Error from '@component/form/Error';
-import CartItem from '@component/cart/CartItem';
-import InputArea from '@component/form/InputArea';
-import InputShipping from '@component/form/InputShipping';
-import InputPayment from '@component/form/InputPayment';
-import useCheckoutSubmit from '@hooks/useCheckoutSubmit';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchcartList } from 'src/store/slice/CartSlice/CartListSlice';
-import { useEffect } from 'react';
+import Layout from "@layout/Layout";
+import Label from "@component/form/Label";
+import Error from "@component/form/Error";
+import CartItem from "@component/cart/CartItem";
+import InputArea from "@component/form/InputArea";
+import InputShipping from "@component/form/InputShipping";
+import InputPayment from "@component/form/InputPayment";
+import useCheckoutSubmit from "@hooks/useCheckoutSubmit";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchcartList } from "src/store/slice/CartSlice/CartListSlice";
+import { useEffect } from "react";
+import { fetchPlaceOrder } from "src/store/slice/CartSlice/PlaceOrderSlice";
+import { toast } from "react-toastify";
+import { notifyError, notifySuccess } from "@utils/toast";
+import { useRouter } from "next/router";
+
 
 const Checkout = () => {
   const {
@@ -46,39 +51,127 @@ const Checkout = () => {
     isCheckoutSubmit,
   } = useCheckoutSubmit();
 
-  console.log("checkout::::", register);
+  const router = useRouter();
 
-
-  const { AddToCartSuccess, AddToCartFetching } = useSelector((state) => state.AddToCartSlice);
+  const { AddToCartSuccess, AddToCartFetching } = useSelector(
+    (state) => state.AddToCartSlice
+  );
   const { CartDeleteSuccess } = useSelector((state) => state.CartDeleteSlice);
-  const {quantityIncrementFetching} = useSelector((state)=> state.quantityIncrementSlice)
-  const {quantityDecrementFetching} = useSelector((state)=> state.quantityDecrementSlice)
+  const { quantityIncrementFetching } = useSelector(
+    (state) => state.quantityIncrementSlice
+  );
+  const { quantityDecrementFetching } = useSelector(
+    (state) => state.quantityDecrementSlice
+  );
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const { cartList, cartItems } = useSelector((state) => state.cartListSlice);
+  // state
 
-  // state 
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [street_address, setStreetAddress] = useState("");
+  const [district, setDistrict] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [zipcode, setZipCode] = useState("");
+  const [state, setState] = useState("");
+  // const [totalPrice, setTotalPrice] = useState("");
 
-  const[first_name, setFirstName] = useState("")
-  const [last_name, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
-  const [street_address, setStreetAddress] = useState("")
-  const [district, setDistrict] = useState("")
-  const [city, setCity] = useState("")
-  const [country, setCountry] = useState("")
-  const [zipcode, setZipCode] = useState("")
-  const [state, setState] = useState("")
+  let customer = {
+    first_name,
+    last_name,
+    phone,
+    email,
+  }
+
+  let address = {
+    street_address,
+    country,
+    city,
+    state,
+    district,
+    zipcode,
+
+  }
+
+
+
+  const resetState = () => {
+    setFirstName(""),
+      setLastName(""),
+      setEmail(""),
+      setPhone(""),
+      setStreetAddress(""),
+      setDistrict(""),
+      setCity(""),
+      setCountry(""),
+      setZipCode(""),
+      setState("")
+    // setTotalPrice("")
+  }
+
+
+  const Submit = (e) => {
+    e.preventDefault()
+
+    let error = undefined;
+
+    if (first_name === "") {
+      error = "Please enter firstname";
+    } else if (last_name === "") {
+      error = "Please enter lastname";
+    } else if (phone === "") {
+      error = "Please enter phone number";
+    } else if (!emailRegex.test(email)) {
+      error = "Please enter valid email";
+    } else if (email === "") {
+      error = "Please enter email";
+    } else if (street_address === "") {
+      error = "Please enter Street address ";
+    } else if (country === "") {
+      error = "Please enter country";
+    } else if (city === "") {
+      error = "Please enter city";
+    } else if (state === "") {
+      error = "Please enter state";
+    } else if (district === "") {
+      error = "Please enter district";
+    } else if (zipcode === "") {
+      error = "Please enter zipcode";
+    }
+
+    if (error) {
+      notifyError(error);
+    } else {
+
+      dispatch(fetchPlaceOrder({ customer, address, total_price: cartList.sub_total }))
+      resetState()
+      notifySuccess("Your order placed.")
+      setTimeout(() => {
+        
+        router.push('/')
+      }, 2000);
+
+    }
+
+  }
+
 
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch(fetchcartList());
-  }, [AddToCartSuccess, AddToCartFetching,CartDeleteSuccess,quantityIncrementFetching,quantityDecrementFetching]);
+  }, [
+    AddToCartSuccess,
+    AddToCartFetching,
+    CartDeleteSuccess,
+    quantityIncrementFetching,
+    quantityDecrementFetching,
 
-  const { cartList,cartItems } = useSelector((state) => state.cartListSlice)
-
-
-
-
+  ]);
+  // setTotalPrice()
   return (
     <>
       <Layout title="Checkout" description="this is checkout page">
@@ -86,55 +179,62 @@ const Checkout = () => {
           <div className="py-10 lg:py-12 px-0 2xl:max-w-screen-2xl w-full xl:max-w-screen-xl flex flex-col md:flex-row lg:flex-row">
             <div className="md:w-full lg:w-3/5 flex h-full flex-col order-2 sm:order-1 lg:order-1">
               <div className="mt-5 md:mt-0 md:col-span-2">
-                <form onSubmit={handleSubmit(submitHandler)}>
+                <form onSubmit={(e) => Submit(e)}>
                   <div className="form-group">
                     <h2 className="font-semibold font-serif text-base text-gray-700 pb-3">
                       01. Personal Details
                     </h2>
                     <div className="grid grid-cols-6 gap-6">
                       <div className="col-span-6 sm:col-span-3">
-                        <InputArea
-                          register={register}
-                          label="First Name"
-                          name="firstName"
-                          type="text"
-                          placeholder="John"
+
+                        {/* First Name */}
+                        <input
+                          placeholder="First Name"
+                          value={first_name}
+                          onChange={(e) => setFirstName(e.target.value)}
+                          className={
+                            "py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-cyan-500 h-11 md:h-12"
+                          }
                         />
-                        <Error errorName={errors.firstName} />
+
+                      </div>
+                      {/* Last Name */}
+                      <div className="col-span-6 sm:col-span-3">
+                        <input
+                          placeholder="Last Name"
+                          value={last_name}
+                          onChange={(e) => setLastName(e.target.value)}
+                          className={
+                            "py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-cyan-500 h-11 md:h-12"
+                          }
+                        />
                       </div>
 
+                      {/* Mobile No */}
                       <div className="col-span-6 sm:col-span-3">
-                        <InputArea
-                          register={register}
-                          label="Last name"
-                          name="lastName"
-                          type="text"
-                          placeholder="Doe"
-                        />
-                        <Error errorName={errors.lastName} />
+                        <div className="col-span-6 sm:col-span-3">
+                          <input
+                            placeholder="Mobile No"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            className={
+                              "py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-cyan-500 h-11 md:h-12"
+                            }
+                          />
+                        </div>
                       </div>
-
+                      {/* Email */}
                       <div className="col-span-6 sm:col-span-3">
-                        <InputArea
-                          register={register}
-                          label="Email address"
-                          name="email"
-                          type="email"
-                          placeholder="youremail@gmail.com"
-                        />
-                        <Error errorName={errors.email} />
-                      </div>
-
-                      <div className="col-span-6 sm:col-span-3">
-                        <InputArea
-                          register={register}
-                          label="Phone number"
-                          name="contact"
-                          type="tel"
-                          placeholder="+062-6532956"
-                        />
-
-                        <Error errorName={errors.contact} />
+                        <div className="col-span-6 sm:col-span-3">
+                          <input
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className={
+                              "py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-cyan-500 h-11 md:h-12"
+                            }
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -143,61 +243,85 @@ const Checkout = () => {
                     <h2 className="font-semibold font-serif text-base text-gray-700 pb-3">
                       02. Shipping Details
                     </h2>
-
+                    {/* Street Address */}
                     <div className="grid grid-cols-6 gap-6 mb-8">
                       <div className="col-span-3">
-                        <InputArea
-                          register={register}
-                          label="Street address"
-                          name="address"
-                          type="text"
-                          placeholder="123 Boulevard Rd, Beverley Hills"
-                        />
-                        <Error errorName={errors.address} />
+                        <div className="col-span-6 sm:col-span-3">
+                          <input
+                            placeholder="Street Address"
+                            value={street_address}
+                            onChange={(e) => setStreetAddress(e.target.value)}
+                            className={
+                              "py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-cyan-500 h-11 md:h-12"
+                            }
+                          />
+                        </div>
                       </div>
-
+                      {/* Country */}
                       <div className="col-span-3">
-                        <InputArea
-                          register={register}
-                          label="District"
-                          name="district"
-                          type="text"
+                        <div className="col-span-6 sm:col-span-3">
+                          <input
+                            placeholder="Country"
+                            value={country}
+                            onChange={(e) => setCountry(e.target.value)}
+                            className={
+                              "py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-cyan-500 h-11 md:h-12"
+                            }
+                          />
+                        </div>
+                      </div>
+                      {/* City */}
+                      <div className="col-span-3">
+                        <div className="col-span-6 sm:col-span-3">
+                          <input
+                            placeholder="City"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            className={
+                              "py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-cyan-500 h-11 md:h-12"
+                            }
+                          />
+                        </div>
+                      </div>
+                      {/* State */}
+                      <div className="col-span-3">
+                        <div className="col-span-6 sm:col-span-3">
+                          <input
+                            placeholder="State"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                            className={
+                              "py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-cyan-500 h-11 md:h-12"
+                            }
+                          />
+                        </div>
+                      </div>
+
+
+                      {/* District */}
+                      <div className="col-span-6 sm:col-span-3">
+
+
+                        <input
                           placeholder="District"
+                          value={district}
+                          onChange={(e) => setDistrict(e.target.value)}
+                          className={
+                            "py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-cyan-500 h-11 md:h-12"
+                          }
                         />
-                        <Error errorName={errors.address} />
-                      </div>
 
-                      <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                        <InputArea
-                          register={register}
-                          label="City"
-                          name="city"
-                          type="text"
-                          placeholder="Los Angeles"
-                        />
-                        <Error errorName={errors.city} />
                       </div>
-
-                      <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                        <InputArea
-                          register={register}
-                          label="Country"
-                          name="country"
-                          type="text"
-                          placeholder="United States"
+                      {/* Zipcode */}
+                      <div className="col-span-6 sm:col-span-3">
+                        <input
+                          placeholder="Zipcode"
+                          value={zipcode}
+                          onChange={(e) => setZipCode(e.target.value)}
+                          className={
+                            "py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-cyan-500 h-11 md:h-12"
+                          }
                         />
-                        <Error errorName={errors.country} />
-                      </div>
-
-                      <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                        <InputArea
-                          register={register}
-                          label="ZIP / Postal"
-                          name="zipCode"
-                          type="text"
-                          placeholder="2345"
-                        />
-                        <Error errorName={errors.zipCode} />
                       </div>
                     </div>
 
@@ -276,26 +400,27 @@ const Checkout = () => {
                     <div className="col-span-6 sm:col-span-3">
                       <button
                         type="submit"
-                        disabled={isEmpty || !stripe || isCheckoutSubmit}
+                        onClick={(e) => (Submit(e))}
+
                         className="bg-cyan-500 hover:bg-cyan-600 border border-cyan-500 transition-all rounded py-3 text-center text-sm font-serif font-medium text-white flex justify-center w-full"
                       >
                         {isCheckoutSubmit ? (
                           <span className="flex justify-center text-center">
-                            {' '}
+                            {" "}
                             <img
                               src="/spinner.gif"
                               alt="Loading"
                               width={20}
                               height={10}
-                            />{' '}
+                            />{" "}
                             <span className="ml-2">Processing</span>
                           </span>
                         ) : (
                           <span className="flex justify-center text-center">
-                            {' '}
+                            {" "}
                             Confirm
                             <span className="text-xl ml-2">
-                              {' '}
+                              {" "}
                               <IoArrowForward />
                             </span>
                           </span>
@@ -332,56 +457,15 @@ const Checkout = () => {
 
                 <div className="flex items-center mt-4 py-4 lg:py-4 text-sm w-full font-semibold text-heading last:border-b-0 last:text-base last:pb-0">
                   <form className="w-full">
-                    {couponInfo.couponCode ? (
-                      <span className="bg-cyan-50 px-4 py-3 leading-tight w-full rounded-md flex justify-between">
-                        {' '}
-                        <p className="text-cyan-600">Coupon Applied </p>{' '}
-                        <span className="text-red-500 text-right">
-                          {couponInfo.couponCode}
-                        </span>
-                      </span>
-                    ) : (
-                      <div className="flex flex-col sm:flex-row items-start justify-end">
-                        <input
-                          ref={couponRef}
-                          type="text"
-                          placeholder="Input your coupon code"
-                          className="form-input py-2 px-3 md:px-4 w-full appearance-none transition ease-in-out border text-input text-sm rounded-md h-12 duration-200 bg-white border-gray-200 focus:ring-0 focus:outline-none focus:border-cyan-500 placeholder-gray-500 placeholder-opacity-75"
-                        />
-                        <button
-                          onClick={handleCouponCode}
-                          className="md:text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold text-center justify-center border border-gray-200 rounded-md placeholder-white focus-visible:outline-none focus:outline-none px-5 md:px-6 lg:px-8 py-3 md:py-3.5 lg:py-3 mt-3 sm:mt-0 sm:ml-3 md:mt-0 md:ml-3 lg:mt-0 lg:ml-3 hover:text-white hover:bg-cyan-500 h-12 text-sm lg:text-base w-full sm:w-auto"
-                        >
-                          Apply
-                        </button>
-                      </div>
-                    )}
+
                   </form>
-                </div>
-                <div className="flex items-center py-2 text-sm w-full font-semibold text-gray-500 last:border-b-0 last:text-base last:pb-0">
-                  Subtotal
-                  <span className="ml-auto flex-shrink-0 text-gray-800 font-bold">
-                    ${cartTotal.toFixed(2)}
-                  </span>
-                </div>
-                <div className="flex items-center py-2 text-sm w-full font-semibold text-gray-500 last:border-b-0 last:text-base last:pb-0">
-                  Shipping Cost
-                  <span className="ml-auto flex-shrink-0 text-gray-800 font-bold">
-                    ${shippingCost.toFixed(2)}
-                  </span>
-                </div>
-                <div className="flex items-center py-2 text-sm w-full font-semibold text-gray-500 last:border-b-0 last:text-base last:pb-0">
-                  Discount
-                  <span className="ml-auto flex-shrink-0 font-bold text-orange-400">
-                    ${discountAmount.toFixed(2)}
-                  </span>
                 </div>
                 <div className="border-t mt-4">
                   <div className="flex items-center font-bold font-serif justify-between pt-5 text-sm uppercase">
                     Total cost
                     <span className="font-serif font-extrabold text-lg">
-                      {' '}
-                      ${Math.round(total)}.00
+                      {" "}
+                      ₹{cartList.sub_total}
                     </span>
                   </div>
                 </div>

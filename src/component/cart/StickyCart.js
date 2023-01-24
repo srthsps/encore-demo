@@ -35,7 +35,7 @@ const StickyCart = () => {
           </span>
         </div>
         <div className="flex flex-col items-center justify-center bg-cyan-700 p-2 text-white text-base font-serif font-medium rounded-bl-lg mx-auto">
-          ${cartTotal.toFixed(2)}
+        ₹{cartList.sub_total}
         </div>
       </div>
     </button>

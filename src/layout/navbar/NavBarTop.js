@@ -22,7 +22,7 @@ const NavBarTop = () => {
 
   const handleModal = () => {
     if (userInfo?.data) {
-      router.push('/user/dashboard');
+      // router.push('/user/dashboard');
     } else {
       setModalOpen(!modalOpen);
     }
@@ -76,13 +76,13 @@ const NavBarTop = () => {
                 <a className="font-medium hover:text-cyan-400">Contact Us</a>
               </Link>
               <span className="mx-2">|</span>
-              <button
+              {/* <button
                 onClick={handleModal}
                 className="font-medium hover:text-cyan-400"
               >
                 My account
-              </button>
-              <span className="mx-2">|</span>
+              </button> */}
+              {/* <span className="mx-2">|</span> */}
               {
                 userInfo?.data ?
                   (<button

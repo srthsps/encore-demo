@@ -21,8 +21,8 @@ const Footer = () => {
   return (
     <div className="pb-16 lg:pb-0 xl:pb-0 bg-white">
       <div className="mx-auto max-w-screen-2xl px-4 sm:px-10">
-        <div className="grid grid-cols-2 md:grid-cols-7 xl:grid-cols-12 gap-5 sm:gap-9 lg:gap-11 xl:gap-7 py-10 lg:py-16 justify-between">
-          <div className="pb-3.5 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-3">
+        <div className="grid grid-cols-2 md:grid-cols-6 xl:grid-cols-6 gap-5 sm:gap-9 lg:gap-11 xl:gap-7 py-10 lg:py-16">
+          <div className="pb-3.5 pt-9 sm:pt-3 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-3 lg:mx-64">
             <h3 className="text-md lg:leading-7 font-medium mb-4 sm:mb-5 lg:mb-6 pb-0.5">
               Company
             </h3>
@@ -44,99 +44,19 @@ const Footer = () => {
               <li className="flex items-baseline">
                 <Link href="#">
                   <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
-                    Careers
-                  </a>
-                </Link>
-              </li>
-              <li className="flex items-baseline">
-                <Link href="#">
-                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Latest news
                   </a>
                 </Link>
               </li>
             </ul>
           </div>
-          <div className="pb-3.5 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-3">
-            <h3 className="text-md lg:leading-7 font-medium mb-4 sm:mb-5 lg:mb-6 pb-0.5">
-              Top Category
-            </h3>
-            <ul className="text-sm lg:text-15px flex flex-col space-y-3">
-              <li className="flex items-baseline">
-                <Link href="/search?Category=fish--meat">
-                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
-                    Fish & Meat
-                  </a>
-                </Link>
-              </li>
-
-              <li className="flex items-baseline">
-                <Link href="/search?Category=drinks">
-                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
-                    Soft Drinks
-                  </a>
-                </Link>
-              </li>
-              <li className="flex items-baseline">
-                <Link href="search?Category=baby-care">
-                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
-                    Baby Care
-                  </a>
-                </Link>
-              </li>
-              <li className="flex items-baseline">
-                <Link href="search?Category=beauty--health">
-                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
-                    Beauty & Health
-                  </a>
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="pb-3.5 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-3">
-            <h3 className="text-md lg:leading-7 font-medium mb-4 sm:mb-5 lg:mb-6 pb-0.5">
-              My Account
-            </h3>
-            <ul className="text-sm lg:text-15px flex flex-col space-y-3">
-              <li className="flex items-baseline">
-                <Link href={`${userInfo?.email ? '/user/dashboard' : '#'}`}>
-                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
-                    Dashboard
-                  </a>
-                </Link>
-              </li>
-              <li className="flex items-baseline">
-                <Link href={`${userInfo?.email ? '/user/my-orders' : '#'}`}>
-                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
-                    My Orders
-                  </a>
-                </Link>
-              </li>
-              <li className="flex items-baseline">
-                <Link href={`${userInfo?.email ? '/user/dashboard' : '#'}`}>
-                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
-                    Recent Orders
-                  </a>
-                </Link>
-              </li>
-              <li className="flex items-baseline">
-                <Link
-                  href={`${userInfo?.email ? '/user/update-profile' : '#'}`}
-                >
-                  <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
-                    Updated Profile
-                  </a>
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="pb-3.5 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-3">
+          <div className="pb-36  pt-0 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-1  ">
             <Link href="/">
               <a className="mr-3 lg:mr-12 xl:mr-12" rel="noreferrer">
-                <Image
-                  width={110}
-                  height={40}
-                  src="/logo/logo-color.svg"
+                <img
+                  width={130}
+                  height={70}
+                  src="/logo/logo-encore.png"
                   alt="logo"
                 />
               </a>
@@ -152,6 +72,79 @@ const Footer = () => {
               <span>Email: ccruidk@test.com</span>
             </p>
           </div>
+          {/* <div className="pb-3.5 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-3">
+              <h3 className="text-md lg:leading-7 font-medium mb-4 sm:mb-5 lg:mb-6 pb-0.5">
+              Top Category
+              </h3>
+              <ul className="text-sm lg:text-15px flex flex-col space-y-3">
+                <li className="flex items-baseline">
+                  <Link href="/search?Category=fish--meat">
+                    <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
+                      Fish & Meat
+                    </a>
+                  </Link>
+                </li>
+
+                <li className="flex items-baseline">
+                  <Link href="/search?Category=drinks">
+                    <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
+                      Soft Drinks
+                    </a>
+                  </Link>
+                </li>
+                <li className="flex items-baseline">
+                  <Link href="search?Category=baby-care">
+                    <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
+                      Baby Care
+                    </a>
+                  </Link>
+                </li>
+                <li className="flex items-baseline">
+                  <Link href="search?Category=beauty--health">
+                    <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
+                      Beauty & Health
+                    </a>
+                  </Link>
+                </li>
+              </ul>
+            </div> */}
+          {/* <div className="pb-3.5 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-3">
+              <h3 className="text-md lg:leading-7 font-medium mb-4 sm:mb-5 lg:mb-6 pb-0.5">
+                My Account
+              </h3>
+              <ul className="text-sm lg:text-15px flex flex-col space-y-3">
+                <li className="flex items-baseline">
+                  <Link href={`${userInfo?.email ? '/user/dashboard' : '#'}`}>
+                    <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
+                      Dashboard
+                    </a>
+                  </Link>
+                </li>
+                <li className="flex items-baseline">
+                  <Link href={`${userInfo?.email ? '/user/my-orders' : '#'}`}>
+                    <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
+                      My Orders
+                    </a>
+                  </Link>
+                </li>
+                <li className="flex items-baseline">
+                  <Link href={`${userInfo?.email ? '/user/dashboard' : '#'}`}>
+                    <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
+                      Recent Orders
+                    </a>
+                  </Link>
+                </li>
+                <li className="flex items-baseline">
+                  <Link
+                    href={`${userInfo?.email ? '/user/update-profile' : '#'}`}
+                  >
+                    <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
+                      Updated Profile
+                    </a>
+                  </Link>
+                </li>
+              </ul>
+            </div> */}
         </div>
 
         <hr className="hr-line"></hr>

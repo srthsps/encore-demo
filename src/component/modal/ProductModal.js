@@ -16,6 +16,7 @@ import { fetchcartList } from 'src/store/slice/CartSlice/CartListSlice';
 import { useEffect } from 'react';
 import { useCart } from 'react-use-cart';
 import { fetchquantityIncrement } from 'src/store/slice/CartSlice/ProductIncrementSlice';
+import { notifyError, notifySuccess } from '@utils/toast';
 
 const ProductModal = ({ modalOpen, setModalOpen, product }) => {
   const router = useRouter();
@@ -23,12 +24,12 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
   const handleIncrement = (id) => {
     diaptach(fetchquantityIncrement({ productID: id }));
   };
-  const {quantityIncrementList} = useSelector((state)=> state.quantityIncrementSlice)
+  const { quantityIncrementList } = useSelector((state) => state.quantityIncrementSlice)
 
   const { AddToCartSuccess, AddToCartFetching } = useSelector((state) => state.AddToCartSlice)
   const dispatch = useDispatch()
   console.log("kb", items);
-  const {  items } = useCart();
+  const { items } = useCart();
   useEffect(() => {
     dispatch(fetchcartList())
   }, [AddToCartSuccess, AddToCartFetching])
@@ -41,12 +42,20 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
   // const { handleAddItem, setItem, item } = useAddToCart();
   const diaptach = useDispatch()
 
-  const handleAddItem = (id) => {
+  const handleAddItem = (id,stock) => {
     const product = {
       product: id
     }
     diaptach(fetchAddToCart({ payload: product }))
     setModalOpen(false);
+    if (!stock) {
+
+      notifySuccess("Product added your Cart.")
+    }
+    else {
+      notifyError("Product is out of Stock.")
+
+    }
   }
 
   const handleMoreInfo = (id) => {
@@ -133,7 +142,7 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
                   </button>
                 </div> */}
                 <button
-                  onClick={() => handleAddItem(product.id)}
+                  onClick={() => handleAddItem(product.id,product.out_of_stock)}
                   disabled={product.quantity < 1}
                   className="text-sm ml-0 leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-serif text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none text-white px-4 ml-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white bg-cyan-600 hover:bg-cyan-500 w-full h-12"
                 >

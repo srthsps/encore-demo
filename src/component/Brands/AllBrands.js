@@ -22,10 +22,9 @@ const AllBrands = () => {
 
     const handleCategoryClick = (id) => {
         dispatch(fetchBrandCategoryProducts({ brandID: id }))
-        router.push(
-            `/search?${id}`
+        router.push(`/search?${id}`
         );
-        setIsLoading(!isLoading);
+        // setIsLoading(!isLoading);
     };
 
 

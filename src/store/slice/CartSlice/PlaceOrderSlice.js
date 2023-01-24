@@ -3,13 +3,14 @@ import api from "../../../api";
 
 export const fetchPlaceOrder = createAsyncThunk(
     "PlaceOrder-Cart",
-    async ({ payload }, { rejectWithValue }) => {
+    async ({ customer,address,total_price,date_created }, { rejectWithValue }) => {
     
         try {
             const response = await api.actionHandler({
                 url: api.placeOrderURL,
                 method: "POST",
-                data: payload,
+                data: {customer,address,total_price}
+
 
             });
 

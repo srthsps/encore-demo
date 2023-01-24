@@ -28,15 +28,12 @@ const Navbar = () => {
   const { AddToCartSuccess, AddToCartFetching } = useSelector((state) => state.AddToCartSlice)
   const { CartDeleteFetching } = useSelector((state) => state.CartDeleteSlice)
   const dispatch = useDispatch()
-  console.log("kb", AddToCartFetching);
 
   useEffect(() => {
     dispatch(fetchcartList())
-  }, [AddToCartSuccess, AddToCartFetching,CartDeleteFetching])
+  }, [AddToCartSuccess, AddToCartFetching, CartDeleteFetching])
 
-  const { cartList,cartItems } = useSelector((state) => state.cartListSlice)
-
-  console.log("cart--", cartList);
+  const { cartList, cartItems } = useSelector((state) => state.cartListSlice)
 
   const {
     state: { userInfo },
@@ -72,8 +69,6 @@ const Navbar = () => {
           <div className="top-bar h-full lg:h-auto flex items-center justify-between py-4 mx-auto">
             <Link href="/">
               <a className="mr-3 lg:mr-12 xl:mr-12 hidden md:hidden lg:block text-white">
-                {/* Encore Powers ecommerce */}
-
                 <img
                   width={125}
                   src="/logo/logo-encore.png"
@@ -85,7 +80,7 @@ const Navbar = () => {
 
             <div className="w-full transition-all duration-200 ease-in-out lg:flex lg:max-w-[520px] xl:max-w-[750px] 2xl:max-w-[900px] md:mx-12 lg:mx-4 xl:mx-0">
               <div className="w-full flex flex-col justify-center flex-shrink-0 relative z-30">
-    
+
                 {/* <div className="flex flex-col mx-auto w-full">
                   <form
                     onSubmit={handleSubmit}
@@ -135,7 +130,7 @@ const Navbar = () => {
                 aria-label="Login"
               >
                 {imageUrl || userInfo?.image ? (
-                  <Link href="/user/dashboard">
+                  <Link href="/">
                     <a className="relative top-1 w-6 h-6">
                       <Image
                         width={29}
@@ -148,7 +143,7 @@ const Navbar = () => {
                   </Link>
                 ) :
                   userInfo?.data ? (
-                    <Link href="/user/dashboard">
+                    <Link href="/">
                       <a className="leading-none font-bold font-serif block">
                         {userInfo?.data.user.name[0].toUpperCase()}
                       </a>
