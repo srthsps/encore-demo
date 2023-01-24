@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 //internal import
 import useAddToCart from "@hooks/useAddToCart";
 import { SidebarContext } from "@context/SidebarContext";
-import { fetchAddToCart } from "src/store/slice/CartSlice/AddToCartSlice";
-import { fetchProductQuantity } from "src/store/slice/CartSlice/ProductQuantityEditSlice";
+import { fetchCartDelete } from "src/store/slice/CartSlice/CartDeleteSlice";
+import { fetchquantityIncrement } from "src/store/slice/CartSlice/ProductIncrementSlice";
+import { fetchquantityDecrement } from "src/store/slice/CartSlice/ProductDecrementSlice";
+import { useState } from "react";
 
 
 const CartItem = ({ item }) => {
@@ -15,19 +17,24 @@ const CartItem = ({ item }) => {
   // const { handleIncreaseQuantity } = useAddToCart();
   const { closeCartDrawer } = useContext(SidebarContext);
 
-  const diaptach = useDispatch()
 
 
 
-  // const handleDecreaseQuantity = (id, item) => {
+
+  const diaptach = useDispatch();
+
+  const removeItem = (id) => {
+    diaptach(fetchCartDelete({ productId: id }));
+  };
+
+  const handleIncrement = (id) => {
+    diaptach(fetchquantityIncrement({ productID: id }));
     
-  //   const quantity = item.price * item.quantity + item.price
-  //   console.log("incree.....",quantity);
-
-  //   diaptach(fetchProductQuantity({ payload: quantity, productID: id }))
-
-  // }
-
+    
+  };
+  const handleDecrement = (id) => {
+    diaptach(fetchquantityDecrement({ productID: id }));
+  };
 
 
 
@@ -52,26 +59,31 @@ const CartItem = ({ item }) => {
           </a>
         </Link>
         <span className="text-xs text-gray-400 mb-1">
-          Item Price ${item.price}
+          Item Price ₹ {item.price}
         </span>
         <div className="flex items-center justify-between">
           <div className="font-bold text-sm md:text-base text-heading leading-5">
-            <span>${(item.price * item.quantity).toFixed(2)}</span>
+            <span>₹ {item.price}</span>
             {/* <span>${(item.price * item.quantity).toFixed(2)}</span> */}
           </div>
           <div className="h-8 w-22 md:w-24 lg:w-24 flex flex-wrap items-center justify-evenly p-1 border border-gray-100 bg-white text-gray-600 rounded-md">
             <button
-              // onClick={() => handleDecreaseQuantity(item.id,item)}
+            onClick={() => handleDecrement(item.id)}
             >
               <span className="text-dark text-base">
                 <FiMinus />
               </span>
             </button>
             <p className="text-sm font-semibold text-dark px-1">
-              {item.quantity}
+              
+                {item.quantity}
+              
+              {/* {
+               quantityDecrementList.quantity 
+              } */}
             </p>
-            <button 
-            // onClick={() => handleIncreaseQuantity(item.id, item.price)}
+            <button
+            onClick={() => handleIncrement(item.id)}
             >
               <span className="text-dark text-base">
                 <FiPlus />

@@ -8,7 +8,7 @@ import ProductModal from '@component/modal/ProductModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAddToCart } from 'src/store/slice/CartSlice/AddToCartSlice';
 import { fetchcartList } from 'src/store/slice/CartSlice/CartListSlice';
-import { notifySuccess } from '@utils/toast';
+import { notifyError, notifySuccess } from '@utils/toast';
 
 const ProductCard = ({ product }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -40,7 +40,14 @@ const ProductCard = ({ product }) => {
     }
 
     diaptach(fetchAddToCart({ payload: productID }))
-    notifySuccess("Product added your Cart.")
+    if (!product.out_of_stock) {
+
+      notifySuccess("Product added your Cart.")
+    }
+    else {
+      notifyError("Product is out of Stock.")
+
+    }
   }
 
   return (
@@ -90,7 +97,7 @@ const ProductCard = ({ product }) => {
               onClick={() => handleAddItem(product.id)}
               disabled={product.quantity < 1}
               aria-label="cart"
-              className="h-9 w-9 flex items-center justify-center border border-gray-200 rounded text-emerald-500 hover:border-emerald-500 hover:bg-emerald-500 hover:text-white transition-all"
+              className="h-9 w-9 flex items-center justify-center border border-gray-200 rounded text-cyan-500 hover:border-cyan-500 hover:bg-cyan-500 hover:text-white transition-all"
             >
               {' '}
               <span className="text-xl">
@@ -104,7 +111,7 @@ const ProductCard = ({ product }) => {
                     item.id === product.id && (
                       <div
                         key={item.id}
-                        className="h-9 w-auto flex flex-wrap items-center justify-evenly py-1 px-2 bg-emerald-500 text-white rounded"
+                        className="h-9 w-auto flex flex-wrap items-center justify-evenly py-1 px-2 bg-cyan-500 text-white rounded"
                       >
                         <button
                           onClick={() =>
@@ -137,7 +144,7 @@ const ProductCard = ({ product }) => {
                 onClick={() => handleAddItem(product.id)}
                 disabled={product.quantity < 1}
                 aria-label="cart"
-                className="h-9 w-9 flex items-center justify-center border border-gray-200 rounded text-emerald-500 hover:border-emerald-500 hover:bg-emerald-500 hover:text-white transition-all"
+                className="h-9 w-9 flex items-center justify-center border border-gray-200 rounded text-cyan-500 hover:border-cyan-500 hover:bg-cyan-500 hover:text-white transition-all"
               >
                 {' '}
                 <span className="text-xl">

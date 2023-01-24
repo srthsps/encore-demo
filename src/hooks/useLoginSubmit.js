@@ -45,10 +45,10 @@ const useLoginSubmit = (setModalOpen, setShowVerifyEmail, setShowVerifyOtp) => {
           router.push(redirect || '/');
           notifySuccess(res.message);
           dispatch({ type: 'USER_LOGIN', payload: res });
-          localStorage.setItem('portal-token',(res.data.token.access))
+          localStorage.setItem('portal-token', (res.data.token.access))
           console.log("info", res);
           Cookies.set('userInfo', JSON.stringify(res), {
-            
+
           });
 
         })
@@ -64,15 +64,16 @@ const useLoginSubmit = (setModalOpen, setShowVerifyEmail, setShowVerifyOtp) => {
           // setModalOpen(true);
           notifySuccess('Registration Success!');
           setShowVerifyEmail(true)
-          
+          router.push('/Login')
+
         })
         .catch((err) => {
           setLoading(false);
           notifyError(err.message);
         });
-      }
-      if (verifyEmail) {
-        UserServices.verifyEmailAddress({ email: verifyEmail }) // verify email
+    }
+    if (verifyEmail) {
+      UserServices.verifyEmailAddress({ email: verifyEmail }) // verify email
         .then((res) => {
           setLoading(false);
           // setModalOpen(true);
@@ -83,9 +84,9 @@ const useLoginSubmit = (setModalOpen, setShowVerifyEmail, setShowVerifyOtp) => {
           setLoading(false);
           notifyError(err);
         });
-      }
-      if (verifyOtp) {
-        UserServices.verifyOtp({ otp: verifyOtp, email : verifyOtpEmail}) // verify otp
+    }
+    if (verifyOtp) {
+      UserServices.verifyOtp({ otp: verifyOtp, email: verifyOtpEmail }) // verify otp
         .then((res) => {
           setLoading(false);
           // setModalOpen(true);

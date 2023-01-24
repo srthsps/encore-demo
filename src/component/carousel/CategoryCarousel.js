@@ -123,7 +123,7 @@ const CategoryCarousel = () => {
                   />
                   {/* </div> */}
 
-                  <p className="text-xs text-gray-600 mt-2 font-serif group-hover:text-emerald-500">
+                  <p className="text-xs text-gray-600 mt-2 font-serif group-hover:text-cyan-400">
                     {category.brand_name}
                   </p>
                 </div>

@@ -10,7 +10,7 @@ const DefaultSeo = () => {
         locale: 'en_IE',
         url: 'https://kachabazar-store.vercel.app/',
         site_name:
-          'KachaBazar - React Grocery & Organic Food Store e-commerce Template',
+          'Encore Powers - React Grocery & Organic Food Store e-commerce Template',
       }}
       twitter={{
         handle: '@handle',

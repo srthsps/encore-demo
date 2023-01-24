@@ -11,7 +11,7 @@ const Discount = ({ product, card }) => {
               : 'inline-block text-2xl'
           }
         >
-          ${product.price_without_VAT}
+          ₹ {product.price_without_VAT}
         </span>
       ) : (
         <span
@@ -21,7 +21,7 @@ const Discount = ({ product, card }) => {
               : 'inline-block text-2xl'
           }
         >
-          ${product.price_without_VAT}
+          ₹ {product.price_without_VAT}
         </span>
       )}
       {product.discount ? (
@@ -32,7 +32,7 @@ const Discount = ({ product, card }) => {
               : 'text-lg font-normal text-gray-400 ml-1'
           }
         >
-          ${product.price_without_VAT}
+          ₹ {product.price_without_VAT}
         </del>
       ) : null}
     </div>

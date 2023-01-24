@@ -32,6 +32,7 @@ const cartListSlice = createSlice({
     name: "cart-list",
     initialState: {
         cartList: [],
+        cartItems: [],
         cartListFetching: false,
         cartListSuccess: false,
         cartListError: false,
@@ -48,9 +49,11 @@ const cartListSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchcartList.fulfilled, (state, action) => {
-
             state.cartList = action.payload.data;
-            // action.payload.forEach((item) => state.cartList.push(item));
+            state.cartItems = action.payload.data.results;
+            // action.payload.data.results.forEach((item) => state.cartItems.push(item));
+
+            console.log("cart-list ::: ", state.cartItems);
 
             state.cartListFetching = false;
             state.cartListSuccess = true;

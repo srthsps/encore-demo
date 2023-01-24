@@ -26,16 +26,14 @@ const Navbar = () => {
   const router = useRouter();
 
   const { AddToCartSuccess, AddToCartFetching } = useSelector((state) => state.AddToCartSlice)
+  const { CartDeleteFetching } = useSelector((state) => state.CartDeleteSlice)
   const dispatch = useDispatch()
-  console.log("kb", AddToCartFetching);
 
   useEffect(() => {
     dispatch(fetchcartList())
-  }, [AddToCartSuccess, AddToCartFetching])
+  }, [AddToCartSuccess, AddToCartFetching, CartDeleteFetching])
 
-  const { cartList } = useSelector((state) => state.cartListSlice)
-
-  console.log("cart--", cartList);
+  const { cartList, cartItems } = useSelector((state) => state.cartListSlice)
 
   const {
     state: { userInfo },
@@ -66,24 +64,24 @@ const Navbar = () => {
         <LoginModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       )}
 
-      <div className="bg-emerald-500 sticky top-0 z-20">
+      <div className="bg-cyan-400 sticky top-0 z-20">
         <div className="max-w-screen-2xl mx-auto px-3 sm:px-10">
-          <div className="top-bar h-16 lg:h-auto flex items-center justify-between py-4 mx-auto">
+          <div className="top-bar h-full lg:h-auto flex items-center justify-between py-4 mx-auto">
             <Link href="/">
               <a className="mr-3 lg:mr-12 xl:mr-12 hidden md:hidden lg:block text-white">
-                Encore Powers ecommerce
-
-                {/* <Image
-                  width={110}
-                  height={40}
-                  src="/logo/logo-light.svg"
+                <img
+                  width={125}
+                  src="/logo/logo-encore.png"
                   alt="logo"
-                /> */}
+                  className='h-full'
+                />
               </a>
             </Link>
+
             <div className="w-full transition-all duration-200 ease-in-out lg:flex lg:max-w-[520px] xl:max-w-[750px] 2xl:max-w-[900px] md:mx-12 lg:mx-4 xl:mx-0">
               <div className="w-full flex flex-col justify-center flex-shrink-0 relative z-30">
-                <div className="flex flex-col mx-auto w-full">
+
+                {/* <div className="flex flex-col mx-auto w-full">
                   <form
                     onSubmit={handleSubmit}
                     className="relative pr-12 md:pr-14 bg-white overflow-hidden shadow-sm rounded-md w-full"
@@ -104,16 +102,16 @@ const Navbar = () => {
                       <IoSearchOutline />
                     </button>
                   </form>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="hidden md:hidden md:items-center lg:flex xl:block absolute inset-y-0 right-0 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <button
+              {/* <button
                 className="pr-5 text-white text-2xl font-bold"
                 aria-label="Alert"
               >
                 <FiBell className="w-6 h-6 drop-shadow-xl" />
-              </button>
+              </button> */}
               <button
                 aria-label="Total"
                 onClick={toggleCartDrawer}
@@ -132,7 +130,7 @@ const Navbar = () => {
                 aria-label="Login"
               >
                 {imageUrl || userInfo?.image ? (
-                  <Link href="/user/dashboard">
+                  <Link href="/">
                     <a className="relative top-1 w-6 h-6">
                       <Image
                         width={29}
@@ -145,7 +143,7 @@ const Navbar = () => {
                   </Link>
                 ) :
                   userInfo?.data ? (
-                    <Link href="/user/dashboard">
+                    <Link href="/">
                       <a className="leading-none font-bold font-serif block">
                         {userInfo?.data.user.name[0].toUpperCase()}
                       </a>
