@@ -64,7 +64,7 @@ const Category = () => {
           <div className="relative grid gap-2 p-6">
             {data?.map((category) => (
               <CategoryCard
-                key={category._id}
+                key={category.id}
                 title={category.parent}
                 icon={category.icon}
                 nested={category.children}
