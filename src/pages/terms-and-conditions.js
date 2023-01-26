@@ -16,13 +16,13 @@ const TermAndConditions = () => {
         <div className="max-w-screen-2xl mx-auto lg:py-20 py-10 px-3 sm:px-10">
           <div className="mb-8 lg:mb-12 last:mb-0">
             <h2 className="text-xl xl:text-2xl xl:leading-7 font-semibold font-serif mb-2 lg:mb-4">
-              Welcome to KachaBazar!
+              Welcome to Encore powers!
             </h2>
             <div className="font-sans leading-7">
               <p>
                 These terms and conditions outline the rules and regulations for
-                the use of KachaBazar's Website, located at
-                https://kachabazar.com/. By accessing this website we assume you
+                the use of Website, located at
+                 By accessing this website we assume you
                 accept these terms and conditions. Do not continue to use
                 KachaBazar if you do not agree to take all of the terms and
                 conditions stated on this page.

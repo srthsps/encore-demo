@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { FiPhoneCall, FiUser } from 'react-icons/fi';
+import { FiPhoneCall, FiMail, FiUser } from 'react-icons/fi';
 
 //internal import
 import LoginModal from '@component/modal/LoginModal';
@@ -64,6 +64,17 @@ const NavBarTop = () => {
                 className="font-bold text-cyan-600 ml-1"
               >
                 +01234560352
+              </a>
+            </span>
+
+            <span className="flex items-center">
+              <FiMail className="mr-2" />
+              We are available 24/7, Need help? Email:{' '}
+              <a
+                href="tel:+012345609"
+                className="font-bold text-cyan-600 ml-1"
+              >
+                encore@gmail.com
               </a>
             </span>
 
