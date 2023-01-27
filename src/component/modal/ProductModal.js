@@ -1,68 +1,65 @@
-import React, { useContext } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { FiPlus, FiMinus } from 'react-icons/fi';
+import React, { useContext } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { FiPlus, FiMinus } from 'react-icons/fi'
 
-import Tags from '@component/common/Tags';
-import Stock from '@component/common/Stock';
-import Price from '@component/common/Price';
-import useAddToCart from '@hooks/useAddToCart';
-import MainModal from '@component/modal/MainModal';
-import { SidebarContext } from '@context/SidebarContext';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchAddToCart } from 'src/store/slice/CartSlice/AddToCartSlice';
-import { fetchcartList } from 'src/store/slice/CartSlice/CartListSlice';
-import { useEffect } from 'react';
-import { useCart } from 'react-use-cart';
-import { fetchquantityIncrement } from 'src/store/slice/CartSlice/ProductIncrementSlice';
-import { notifyError, notifySuccess } from '@utils/toast';
+import Tags from '@component/common/Tags'
+import Stock from '@component/common/Stock'
+import Price from '@component/common/Price'
+import useAddToCart from '@hooks/useAddToCart'
+import MainModal from '@component/modal/MainModal'
+import { SidebarContext } from '@context/SidebarContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchAddToCart } from 'src/store/slice/CartSlice/AddToCartSlice'
+import { fetchcartList } from 'src/store/slice/CartSlice/CartListSlice'
+import { useEffect } from 'react'
+import { useCart } from 'react-use-cart'
+import { fetchquantityIncrement } from 'src/store/slice/CartSlice/ProductIncrementSlice'
+import { notifyError, notifySuccess } from '@utils/toast'
 
 const ProductModal = ({ modalOpen, setModalOpen, product }) => {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleIncrement = (id) => {
-    diaptach(fetchquantityIncrement({ productID: id }));
-  };
-  const { quantityIncrementList } = useSelector((state) => state.quantityIncrementSlice)
+    diaptach(fetchquantityIncrement({ productID: id }))
+  }
+  const { quantityIncrementList } = useSelector(
+    (state) => state.quantityIncrementSlice,
+  )
 
-  const { AddToCartSuccess, AddToCartFetching } = useSelector((state) => state.AddToCartSlice)
+  const { AddToCartSuccess, AddToCartFetching } = useSelector(
+    (state) => state.AddToCartSlice,
+  )
   const dispatch = useDispatch()
-  console.log("kb", items);
-  const { items } = useCart();
+  const { items } = useCart()
   useEffect(() => {
     dispatch(fetchcartList())
   }, [AddToCartSuccess, AddToCartFetching])
 
   const { cartList } = useSelector((state) => state.cartListSlice)
 
-
-
-  const { setIsLoading, isLoading } = useContext(SidebarContext);
+  const { setIsLoading, isLoading } = useContext(SidebarContext)
   // const { handleAddItem, setItem, item } = useAddToCart();
   const diaptach = useDispatch()
 
   const handleAddItem = (id, stock) => {
     const product = {
-      product: id
+      product: id,
     }
     diaptach(fetchAddToCart({ payload: product }))
-    setModalOpen(false);
+    setModalOpen(false)
     if (!stock) {
-
-      notifySuccess("Product added your Cart.")
-    }
-    else {
-      notifyError("Product is out of Stock.")
-
+      notifySuccess('Product added your Cart.')
+    } else {
+      notifyError('Product is out of Stock.')
     }
   }
 
   const handleMoreInfo = (id) => {
-
-    router.push(`/product/${id}`);
-    setIsLoading(!isLoading);
-  };
+    router.push(`/product/${id}`)
+    setIsLoading(!isLoading)
+  }
 
   return (
     <MainModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
@@ -100,7 +97,9 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
                 <div>
                   <span className="font-serif font-semibold py-1 text-sm d-block">
                     <span className="text-gray-700">Product Code:</span>{' '}
-                    <span className="text-gray-500">{product.product_code}</span>
+                    <span className="text-gray-500">
+                      {product.product_code}
+                    </span>
                   </span>
 
                   {/* <Tags product={product} /> */}
@@ -142,7 +141,9 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
                   </button>
                 </div> */}
                 <button
-                  onClick={() => handleAddItem(product.id, product.out_of_stock)}
+                  onClick={() =>
+                    handleAddItem(product.id, product.out_of_stock)
+                  }
                   disabled={product.quantity < 1}
                   className="text-sm  leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-serif text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none text-white px-4 ml-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white bg-cyan-600 hover:bg-cyan-500 w-full h-12"
                 >
@@ -150,13 +151,11 @@ const ProductModal = ({ modalOpen, setModalOpen, product }) => {
                 </button>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
     </MainModal>
-  );
-};
+  )
+}
 
-export default React.memo(ProductModal);
+export default React.memo(ProductModal)

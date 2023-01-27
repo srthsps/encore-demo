@@ -53,8 +53,6 @@ const cartListSlice = createSlice({
             state.cartItems = action.payload.data.results;
             // action.payload.data.results.forEach((item) => state.cartItems.push(item));
 
-            console.log("cart-list ::: ", state.cartItems);
-
             state.cartListFetching = false;
             state.cartListSuccess = true;
             return state;

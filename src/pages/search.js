@@ -20,7 +20,7 @@ const Search = ({ products }) => {
   const { productData, setSortedField } = useFilter(products);
 
   const { brandCategoryList } = useSelector((state) => state.BrandCategoryList)
-  console.log("cst-pr", brandCategoryList);
+  
   useEffect(() => {
     setIsLoading(false);
   }, [brandCategoryList]);

@@ -1,35 +1,32 @@
-import React, { useState } from 'react';
-import { ImFacebook, ImGoogle } from 'react-icons/im';
+import React, { useState } from 'react'
+import { ImFacebook, ImGoogle } from 'react-icons/im'
 
 //internal import
-import Login from '@component/login/Login';
-import Register from '@component/login/Register';
-import ResetPassword from '@component/login/ResetPassword';
-import useLoginSubmit from '@hooks/useLoginSubmit';
-import VerifyEmail from './VerifyEmail';
-import VerifyOtp from './VerifyOtp';
+import Login from '@component/login/Login'
+import Register from '@component/login/Register'
+import ResetPassword from '@component/login/ResetPassword'
+import useLoginSubmit from '@hooks/useLoginSubmit'
+import VerifyEmail from './VerifyEmail'
+import VerifyOtp from './VerifyOtp'
 
 const Common = ({ setModalOpen }) => {
-  const [showRegister, setShowRegister] = useState(false);
-  const [showResetPassword, setShowResetPassword] = useState(false);
-  const [showVerifyEmail, setShowVerifyEmail] = useState(false);
-  const [showVerifyOtp, setShowVerifyOtp] = useState(false);
+  const [showRegister, setShowRegister] = useState(false)
+  const [showResetPassword, setShowResetPassword] = useState(false)
+  const [showVerifyEmail, setShowVerifyEmail] = useState(false)
+  const [showVerifyOtp, setShowVerifyOtp] = useState(false)
 
-  const { handleGoogleSignIn, GoogleLogin } = useLoginSubmit(setModalOpen);
+  const { handleGoogleSignIn, GoogleLogin } = useLoginSubmit(setModalOpen)
 
   const handleModal = () => {
-    setShowRegister(!showRegister);
-    setShowResetPassword(false);
+    setShowRegister(!showRegister)
+    setShowResetPassword(false)
     setShowVerifyEmail(false)
     setShowVerifyOtp(false)
-  };
-  console.log("verify-otp:::", showVerifyOtp)
+  }
 
   return (
     <>
       <div className="overflow-hidden bg-white mx-auto">
-
-
         {showVerifyOtp ? (
           <VerifyOtp
             setModalOpen={setModalOpen}
@@ -37,11 +34,13 @@ const Common = ({ setModalOpen }) => {
             showVerifyOtp={setShowVerifyOtp}
             setShowVerifyEmail={setShowVerifyEmail}
           />
-        ) : showVerifyEmail ? (<VerifyEmail
-          setModalOpen={setModalOpen}
-          // setShowVerifyEmail={setShowVerifyEmail}
-          setShowVerifyOtp={setShowVerifyOtp}
-        />) : showResetPassword ? (
+        ) : showVerifyEmail ? (
+          <VerifyEmail
+            setModalOpen={setModalOpen}
+            // setShowVerifyEmail={setShowVerifyEmail}
+            setShowVerifyOtp={setShowVerifyOtp}
+          />
+        ) : showResetPassword ? (
           <ResetPassword
             setShowResetPassword={setShowResetPassword}
             setShowVerifyEmail={setShowVerifyEmail}
@@ -61,10 +60,7 @@ const Common = ({ setModalOpen }) => {
           />
         )}
 
-
-
-
-        < div className="my-8 after:bg-gray-100 before:bg-gray-100 fo10t-sans text-center font-medium">
+        <div className="my-8 after:bg-gray-100 before:bg-gray-100 fo10t-sans text-center font-medium">
           OR
         </div>
 
@@ -102,7 +98,7 @@ const Common = ({ setModalOpen }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Common;
+export default Common

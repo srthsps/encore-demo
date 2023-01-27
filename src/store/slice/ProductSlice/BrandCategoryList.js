@@ -4,7 +4,7 @@ import api from "../../../api";
 export const fetchBrandCategoryProducts = createAsyncThunk(
   "Brand-category",
   async ({ payload, brandID }, { rejectWithValue }) => {
-    console.log("id:::::",brandID);
+    
     try {
       const response = await api.actionHandler({
         url: api.brandProductsListURl.replace("{id}", brandID),
@@ -59,7 +59,7 @@ const BrandCategoryList = createSlice({
         });
         state.BrandCategoryProductsFetching = false;
         state.BrandCategoryProductsSuccess = true;
-        console.log("adc::", state.brandCategoryList);
+       
         return state;
       })
       .addCase(fetchBrandCategoryProducts.rejected, (state, action) => {

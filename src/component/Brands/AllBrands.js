@@ -56,7 +56,7 @@ const AllBrands = () => {
                     />
                   </div>
                   <div className="">
-                    <h3 className="text-sm text-gray-600 font-serif font-medium leading-tight line-clamp-1 group-hover:text-emerald-500">
+                    <h3 className="text-sm text-gray-600 font-serif font-medium leading-tight line-clamp-1 group-hover:text-cyan-500">
                       {category.name}
                     </h3>
                   </div>

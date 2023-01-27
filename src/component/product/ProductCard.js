@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react';
-import { useCart } from 'react-use-cart';
-import { IoBagAddSharp, IoAdd, IoRemove } from 'react-icons/io5';
+import { useEffect, useState } from 'react'
+import { useCart } from 'react-use-cart'
+import { IoBagAddSharp, IoAdd, IoRemove } from 'react-icons/io5'
 
-import Price from '@component/common/Price';
-import Discount from '@component/common/Discount';
-import ProductModal from '@component/modal/ProductModal';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchAddToCart } from 'src/store/slice/CartSlice/AddToCartSlice';
-import { fetchcartList } from 'src/store/slice/CartSlice/CartListSlice';
-import { notifyError, notifySuccess } from '@utils/toast';
+import Price from '@component/common/Price'
+import Discount from '@component/common/Discount'
+import ProductModal from '@component/modal/ProductModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchAddToCart } from 'src/store/slice/CartSlice/AddToCartSlice'
+import { fetchcartList } from 'src/store/slice/CartSlice/CartListSlice'
+import { notifyError, notifySuccess } from '@utils/toast'
 
 const ProductCard = ({ product }) => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false)
   // const { items, addItem, updateItemQuantity, inCart } = useCart();
 
-  const { AddToCartSuccess, AddToCartFetching } = useSelector((state) => state.AddToCartSlice)
+  const { AddToCartSuccess, AddToCartFetching } = useSelector(
+    (state) => state.AddToCartSlice,
+  )
   const dispatch = useDispatch()
-  console.log("kb", AddToCartFetching);
 
   useEffect(() => {
     dispatch(fetchcartList())
   }, [AddToCartSuccess, AddToCartFetching])
-
 
   // const handleAddItem = (p) => {
   //   console.log("id:::", p.id)
@@ -36,17 +36,14 @@ const ProductCard = ({ product }) => {
 
   const handleAddItem = (id) => {
     const productID = {
-      product: id
+      product: id,
     }
 
     diaptach(fetchAddToCart({ payload: productID }))
     if (!product.out_of_stock) {
-
-      notifySuccess("Product added your Cart.")
-    }
-    else {
-      notifyError("Product is out of Stock.")
-
+      notifySuccess('Product added your Cart.')
+    } else {
+      notifyError('Product is out of Stock.')
     }
   }
 
@@ -84,10 +81,7 @@ const ProductCard = ({ product }) => {
               <span className="line-clamp-2">{product.brand}</span>
             </h2>
             <span className="text-gray-400 font-medium text-xs d-block mb-1">
-              <p>
-                Product Code: {product.product_code}
-              </p>
-
+              <p>Product Code: {product.product_code}</p>
             </span>
           </div>
 
@@ -156,7 +150,7 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ProductCard;
+export default ProductCard

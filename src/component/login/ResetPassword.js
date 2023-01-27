@@ -1,11 +1,11 @@
-import Link from 'next/link';
-import React from 'react';
-import { FiMail } from 'react-icons/fi';
+import Link from "next/link";
+import React from "react";
+import { FiMail } from "react-icons/fi";
 
 //internal import
-import Error from '@component/form/Error';
-import InputArea from '@component/form/InputArea';
-import useLoginSubmit from '@hooks/useLoginSubmit';
+import Error from "@component/form/Error";
+import InputArea from "@component/form/InputArea";
+import useLoginSubmit from "@hooks/useLoginSubmit";
 
 const ResetPassword = ({ setShowResetPassword, setModalOpen }) => {
   const { handleSubmit, submitHandler, register, errors, loading } =

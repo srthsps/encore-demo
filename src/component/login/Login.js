@@ -1,13 +1,18 @@
-import { FiLock, FiMail } from 'react-icons/fi';
+import { FiLock, FiMail } from 'react-icons/fi'
 
 //internal  import
-import Error from '@component/form/Error';
-import useLoginSubmit from '@hooks/useLoginSubmit';
-import InputArea from '@component/form/InputArea';
+import Error from '@component/form/Error'
+import useLoginSubmit from '@hooks/useLoginSubmit'
+import InputArea from '@component/form/InputArea'
 
 const Login = ({ setShowResetPassword, setShowVerifyEmail, setModalOpen }) => {
-  const { handleSubmit, submitHandler, register, errors, loading } =
-    useLoginSubmit(setModalOpen);
+  const {
+    handleSubmit,
+    submitHandler,
+    register,
+    errors,
+    loading,
+  } = useLoginSubmit(setModalOpen)
 
   return (
     <>
@@ -62,11 +67,10 @@ const Login = ({ setShowResetPassword, setShowVerifyEmail, setModalOpen }) => {
                 type="button"
                 onClick={() => setShowVerifyEmail(true)}
                 className=" text-sm text-heading  underline hover:no-underline focus:outline-none"
-                style={{ position: "relative", left: "1rem" }}
+                style={{ position: 'relative', left: '1rem' }}
               >
                 Verify Email ?
               </button>
-
             </div>
           </div>
           <button
@@ -79,7 +83,7 @@ const Login = ({ setShowResetPassword, setShowVerifyEmail, setModalOpen }) => {
         </div>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

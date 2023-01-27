@@ -1,73 +1,71 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../../api";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import api from '../../../api'
 
 export const fetchCartDelete = createAsyncThunk(
-  "Cart-Delete",
+  'Cart-Delete',
   async ({ payload, productId }, { rejectWithValue }) => {
-    console.log("id:::::",productId);
     try {
       const response = await api.actionHandler({
-        url: api.cartDeleteURl.replace("{id}", productId),
-        method: "DELETE",
+        url: api.cartDeleteURl.replace('{id}', productId),
+        method: 'DELETE',
+      })
 
-      });
-
-      let data = await response;
+      let data = await response
       if (response.status === 200) {
-        let sam = response.data;
-        return sam;
+        let sam = response.data
+        return sam
       } else {
-        return rejectWithValue(data);
+        return rejectWithValue(data)
       }
     } catch (e) {
       const message =
         (e.response && e.response.data && e.response.data.message) ||
         e.message ||
-        e.toString();
+        e.toString()
 
-      return rejectWithValue(message);
+      return rejectWithValue(message)
     }
-  }
-);
+  },
+)
 
 const CartDeleteSlice = createSlice({
-  name: "Cart-Delete",
+  name: 'Cart-Delete',
   initialState: {
     brandCategoryList: [],
     CartDeleteFetching: false,
     CartDeleteSuccess: false,
     CartDeleteError: false,
-    CartDeleteErrorMessage: "",
+    CartDeleteErrorMessage: '',
   },
   reducers: {
     clearCartDeleteState: (state) => {
-      state.CartDeleteError = false;
-      state.CartDeleteSuccess = false;
-      state.CartDeleteFetching = false;
+      state.CartDeleteError = false
+      state.CartDeleteSuccess = false
+      state.CartDeleteFetching = false
 
-      return state;
+      return state
     },
   },
 
   extraReducers: (builder) => {
     builder
       .addCase(fetchCartDelete.fulfilled, (state) => {
-        state.CartDeleteFetching = false;
-        state.CartDeleteSuccess = true;
-        console.log("adc::", state.brandCategoryList);
-        return state;
+        state.CartDeleteFetching = false
+        state.CartDeleteSuccess = true
+
+        return state
       })
       .addCase(fetchCartDelete.rejected, (state, action) => {
-        state.CartDeleteFetching = false;
-        state.CartDeleteError = true;
-        state.CartDeleteErrorMessage = action?.payload;
+        state.CartDeleteFetching = false
+        state.CartDeleteError = true
+        state.CartDeleteErrorMessage = action?.payload
       })
       .addCase(fetchCartDelete.pending, (state) => {
-        state.CartDeleteFetching = true;
-      });
+        state.CartDeleteFetching = true
+      })
   },
-});
+})
 
-export const { clearCartDeleteState } = CartDeleteSlice.actions;
+export const { clearCartDeleteState } = CartDeleteSlice.actions
 
-export default CartDeleteSlice.reducer;
+export default CartDeleteSlice.reducer

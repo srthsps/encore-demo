@@ -13,7 +13,7 @@ const UserServices = {
   },
   
   userRegister(body) {
-    console.log("ver-em::", body);
+    
     return requests.post('/auth/register/', body);
   },
 
