@@ -35,7 +35,6 @@ const Cart = () => {
 
   const { cartList } = useSelector((state) => state.cartListSlice)
 
-  console.log("cart amt", cartList);
   const {
     state: { userInfo },
   } = useContext(UserContext);

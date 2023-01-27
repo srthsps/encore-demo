@@ -10,7 +10,7 @@ import Loading from '@component/preloader/Loading';
 import { SidebarContext } from '@context/SidebarContext';
 import CategoryServices from '@services/CategoryServices';
 import CategoryCard from '@component/category/CategoryCard';
-import category from '@services/category';
+// import category from '@services/category';
 
 const Category = () => {
   const { categoryDrawerOpen, closeCategoryDrawer } =
@@ -19,7 +19,7 @@ const Category = () => {
   //   CategoryServices.getShowingCategory()
   // );
 
-  const data = category;
+  const data = [];
   const loading = false;
   const error = '';
 
