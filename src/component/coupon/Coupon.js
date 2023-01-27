@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import dayjs from 'dayjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { coupons } from '@services/coupon';
-
 //internal import
 import useAsync from '@hooks/useAsync';
 import CouponServices from '@services/CouponServices';
@@ -14,7 +12,7 @@ const Coupon = ({ couponInHome }) => {
   const [copied, setCopied] = useState(false);
 
   // const { data, error } = useAsync(CouponServices.getAllCoupons);
-  const data = coupons;
+  const data = [];
   const error = null;
 
   const handleCopied = (code) => {
