@@ -26,7 +26,6 @@ const PopularBrand = () => {
 
   const {popularBrand} = useSelector((state)=>state.popularBrandListSlice)
 
-console.log("pop",  popularBrand);
 
   const error = ''
   const PopBrands = popularBrand;

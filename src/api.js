@@ -11,7 +11,6 @@ const actionHandler = (payload) => {
     axios.defaults.headers.common["Authorization"] = "Bearer " + token;
   }
 
-  console.log("token:", token);
 
   return new Promise((resolve, reject) => {
 
@@ -21,10 +20,8 @@ const actionHandler = (payload) => {
     axios(payload)
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
-          console.log("success", response);
           resolve(response);
         } else {
-          console.log("failure", response);
           reject(response);
         }
       })
@@ -35,7 +32,6 @@ const actionHandler = (payload) => {
 };
 
 axios.interceptors.response.use(undefined, function (err) {
-  console.log("err");
   var statusCode = err.status;
 
   if (statusCode === undefined) {
@@ -43,7 +39,6 @@ axios.interceptors.response.use(undefined, function (err) {
     statusCode = lineSplit[lineSplit.length - 1];
   }
 
-  console.log("intercepter statuscode: ", statusCode);
 
   return new Promise(() => {
     if (statusCode === 401 && err.config && !err.config.__isRetryRequest) {

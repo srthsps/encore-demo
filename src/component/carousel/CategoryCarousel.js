@@ -12,7 +12,7 @@ import 'swiper/css/navigation';
 import useAsync from '@hooks/useAsync';
 import CategoryServices from '@services/CategoryServices';
 import { SidebarContext } from '@context/SidebarContext';
-import category from '@services/category';
+// import category from '@services/category';
 import { fetchAllBrandList } from 'src/store/slice/ProductSlice/AllBrandlist';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBrandCategoryProducts } from 'src/store/slice/ProductSlice/BrandCategoryList';
