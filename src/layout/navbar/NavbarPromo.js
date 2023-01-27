@@ -59,11 +59,11 @@ const NavbarPromo = () => {
                         About Us
                       </a>
                     </Link>
-                    <Link href="/contact-us">
+                    {/* <Link href="/contact-us">
                       <a className="font-serif mx-4 py-2 text-sm font-medium hover:text-cyan-400">
                         Contact Us
                       </a>
-                    </Link>
+                    </Link> */}
 
                     <Popover className="relative font-serif">
                       <Popover.Button className="group inline-flex items-center py-2 text-sm font-medium hover:text-cyan-400 focus:outline-none">

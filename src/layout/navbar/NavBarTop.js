@@ -63,7 +63,7 @@ const NavBarTop = () => {
                 href="tel:+012345609"
                 className="font-bold text-cyan-600 ml-1"
               >
-                +01234560352
+                +971 4 358 1030
               </a>
             </span>
 
@@ -74,7 +74,7 @@ const NavBarTop = () => {
                 href="tel:+012345609"
                 className="font-bold text-cyan-600 ml-1"
               >
-                encore@gmail.com
+                sales@encorepowers.com
               </a>
             </span>
 
@@ -83,9 +83,9 @@ const NavBarTop = () => {
                 <a className="font-medium hover:text-cyan-400">About Us</a>
               </Link>
               <span className="mx-2">|</span>
-              <Link href="/contact-us">
+              {/* <Link href="/contact-us">
                 <a className="font-medium hover:text-cyan-400">Contact Us</a>
-              </Link>
+              </Link> */}
               <span className="mx-2">|</span>
               {/* <button
                 onClick={handleModal}

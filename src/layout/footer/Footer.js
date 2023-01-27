@@ -34,13 +34,13 @@ const Footer = () => {
                   </a>
                 </Link>
               </li>
-              <li className="flex items-baseline">
+              {/* <li className="flex items-baseline">
                 <Link href="/contact-us">
                   <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Contact us
                   </a>
                 </Link>
-              </li>
+              </li> */}
               <li className="flex items-baseline">
                 <Link href="#">
                   <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
@@ -67,9 +67,13 @@ const Footer = () => {
                 USA
               </span>
               <br />
-              <span>Tell: 02.356.1666</span>
+              <span>Tel: +971 4 358 1030 </span>
               <br />
-              <span>Email: ccruidk@test.com</span>
+              <span>Mob: +971 52 378 0745</span>
+              <br />
+              <span>Mob: +971 56 415 0066</span>
+              <br />
+              <span>Email: sales@encorepowers.com</span>
             </p>
           </div>
           {/* <div className="pb-3.5 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-3">
@@ -205,7 +209,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li className="flex items-center  mr-3 transition ease-in-out duration-500">
-                  <Link href="https://www.whatsapp.com">
+                  <Link href="https://wa.me/+971564150066">
                     <a
                       aria-label="Social Link"
                       rel="noreferrer"
@@ -222,7 +226,7 @@ const Footer = () => {
               <p className="text-base leading-7 font-medium block">
                 Call Us Today!
               </p>
-              <h5 className="text-2xl font-bold text-cyan-600 leading-7">+012345-67900</h5>
+              <h5 className="text-2xl font-bold text-cyan-600 leading-7">+971 4 358 1030</h5>
             </div>
             <div className="col-span-1 hidden lg:block md:block">
               <ul className="lg:text-right">
