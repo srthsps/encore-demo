@@ -17,7 +17,6 @@ const AllBrands = () => {
   }, []);
 
     const { allBrandList } = useSelector((state) => state.allBrandListSlice);
-    console.log(allBrandList , "allBrandList");
     
 
   const handleCategoryClick = (id) => {
