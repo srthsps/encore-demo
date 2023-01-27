@@ -111,6 +111,7 @@ const CategoryCarousel = () => {
             {data?.map((category, i) => (
               <SwiperSlide key={i + 1} className="group">
                 <div
+                style={{width:"100px", height:"100px"}}
                   onClick={() => handleCategoryClick(category.id)}
                   className="text-center cursor-pointer p-3 bg-white rounded-lg flex flex-col justify-center"
                 >
@@ -118,14 +119,14 @@ const CategoryCarousel = () => {
                   <img
                     src={category.logo}
                     alt={category.brand_name}
-                    width={50}
-                    height={50}
+                    width={100}
+                    height={100}
                   />
                   {/* </div> */}
-
+{/* 
                   <p className="text-xs text-gray-600 mt-2 font-serif group-hover:text-cyan-400">
                     {category.brand_name}
-                  </p>
+                  </p> */}
                 </div>
               </SwiperSlide>
             ))}

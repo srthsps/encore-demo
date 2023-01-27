@@ -10,32 +10,21 @@ const AboutUs = () => {
     <Layout title="About Us" description="This is about us page">
       <PageHeader title="About Us" />
 
+
       <div className="bg-white">
         <div className="max-w-screen-2xl mx-auto lg:py-20 py-10 px-4 sm:px-10">
           <div className="grid grid-flow-row lg:grid-cols-2 gap-4 lg:gap-16 items-center">
             <div className="">
               <h3 className="text-xl lg:text-3xl mb-2 font-serif font-semibold">
-                Welcome to our KachaBazar
+                Welcome to our Encore Powers
               </h3>
               <div className="mt-3 text-base opacity-90 leading-7">
                 <p>
-                  Holisticly seize parallel metrics and functional ROI.
-                  Seamlessly revolutionize error-free internal or "organic"
-                  sources before effective scenarios. Progressively incentivize
-                  state of the art applications for efficient intellectual
-                  capital. Credibly leverage existing distinctive mindshare
-                  through cutting-edge schemas. Proactively procrastinate team
-                  building paradigms coordinate client-centric total transparent
-                  internal.
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                 </p>
 
                 <p>
-                  Dynamically embrace diverse customer service and installed
-                  base paradigms. Credibly seize enterprise-wide experiences for
-                  end-to-end data. Professionally brand flexible alignments and
-                  cost effective architectures. Enthusiastically incentivize
-                  seamless communities with seamlessly facilitate revolutionary
-                  metrics with strategic theme areas.
+                  In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.
                 </p>
               </div>
               <div className="grid md:grid-cols-2 gap-6 lg:grid-cols-2 xl:gap-6 mt-8">
@@ -63,11 +52,11 @@ const AboutUs = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-10 lg:mt-0">
+            {/* <div className="mt-10 lg:mt-0">
               <Image width={920} height={750} src="/about-us.jpg" alt="logo" />
-            </div>
+            </div> */}
           </div>
-          <div className="mt-10 lg:mt-16 text-base opacity-90 leading-7">
+          {/* <div className="mt-10 lg:mt-16 text-base opacity-90 leading-7">
             <p>
               Holisticly seize parallel metrics and functional ROI. Seamlessly
               revolutionize error-free internal or "organic" sources before
@@ -109,9 +98,9 @@ const AboutUs = () => {
               alt="logo"
               className="block rounded-lg"
             />
-          </div>
+          </div> */}
         </div>
-        <div className="bg-gray-50 lg:py-20 py-10">
+        {/* <div className="bg-gray-50 lg:py-20 py-10">
           <div className="max-w-screen-2xl mx-auto px-3 sm:px-10">
             <div className="relative flex flex-col sm:flex-row sm:items-end justify-between mb-8">
               <div className="max-w-2xl">
@@ -224,7 +213,7 @@ const AboutUs = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );

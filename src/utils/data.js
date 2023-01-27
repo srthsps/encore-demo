@@ -28,31 +28,31 @@ const pages = [
   //   href: '/user/dashboard',
   //   icon: FiUser,
   // },
-  {
-    title: 'Offer',
-    href: '/offer',
-    icon: FiGift,
-  },
+  // {
+  //   title: 'Offer',
+  //   href: '/offer',
+  //   icon: FiGift,
+  // },
   {
     title: 'Checkout',
     href: '/checkout',
     icon: IoBagCheckOutline,
   },
-  {
-    title: 'FAQ',
-    href: '/faq',
-    icon: FiHelpCircle,
-  },
+  // {
+  //   title: 'FAQ',
+  //   href: '/faq',
+  //   icon: FiHelpCircle,
+  // },
   {
     title: 'About Us',
     href: '/about-us',
     icon: HiOutlineUserGroup,
   },
-  {
-    title: 'Contact Us',
-    href: '/contact-us',
-    icon: HiOutlinePhoneIncoming,
-  },
+  // {
+  //   title: 'Contact Us',
+  //   href: '/contact-us',
+  //   icon: HiOutlinePhoneIncoming,
+  // },
   {
     title: 'Privacy Policy',
     href: '/privacy-policy',

@@ -73,9 +73,9 @@ const ProductCard = ({ product }) => {
           <img
             src={product.image}
             width={160}
-            height={160}
+            height={80}
             alt={product.brand_name}
-            className="object-cover transition duration-150 ease-linear transform group-hover:scale-105"
+            className="object-cover p-4 transition duration-150 ease-linear transform group-hover:scale-105"
           />
         </div>
         <div className="w-full px-3 lg:px-4 pb-4 overflow-hidden">
