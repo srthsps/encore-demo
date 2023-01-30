@@ -41,13 +41,13 @@ const Footer = () => {
                   </a>
                 </Link>
               </li> */}
-              <li className="flex items-baseline">
+              {/* <li className="flex items-baseline">
                 <Link href="#">
                   <a className="text-gray-600 inline-block w-full hover:text-cyan-600">
                     Latest news
                   </a>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="pb-36  pt-0 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-1  ">

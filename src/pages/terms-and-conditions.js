@@ -24,7 +24,7 @@ const TermAndConditions = () => {
                 the use of Website, located at
                  By accessing this website we assume you
                 accept these terms and conditions. Do not continue to use
-                KachaBazar if you do not agree to take all of the terms and
+                Encore if you do not agree to take all of the terms and
                 conditions stated on this page.
               </p>
               <p>
@@ -52,8 +52,8 @@ const TermAndConditions = () => {
             </h2>
             <div className="font-sans leading-7">
               <p>
-                We employ the use of cookies. By accessing KachaBazar, you
-                agreed to use cookies in agreement with the KachaBazar's Privacy
+                We employ the use of cookies. By accessing Encore, you
+                agreed to use cookies in agreement with the Encore's Privacy
                 Policy. Most interactive websites use cookies to let us retrieve
                 the user’s details for each visit. Cookies are used by our
                 website to enable the functionality of certain areas to make it
@@ -68,10 +68,10 @@ const TermAndConditions = () => {
             </h2>
             <div className="font-sans leading-7">
               <p>
-                Unless otherwise stated, KachaBazar and/or its licensors own the
-                intellectual property rights for all material on KachaBazar. All
+                Unless otherwise stated, Encore and/or its licensors own the
+                intellectual property rights for all material on Encore. All
                 intellectual property rights are reserved. You may access this
-                from KachaBazar for your own personal use subjected to
+                from Encore for your own personal use subjected to
                 restrictions set in these terms and conditions.This Agreement
                 shall begin on the date hereof. Our Terms and Conditions were
                 created with the help of the Terms And Conditions Generator.
@@ -108,12 +108,12 @@ const TermAndConditions = () => {
               <p>
                 Parts of this website offer an opportunity for users to post and
                 exchange opinions and information in certain areas of the
-                website. KachaBazar does not filter, edit, publish or review
+                website. Encore does not filter, edit, publish or review
                 Comments prior to their presence on the website. Comments do not
-                reflect the views and opinions of KachaBazar,its agents and/or
+                reflect the views and opinions of Encore,its agents and/or
                 affiliates. Comments reflect the views and opinions of the
                 person who post their views and opinions. To the extent
-                permitted by applicable laws, KachaBazar shall not be liable for
+                permitted by applicable laws, Encore shall not be liable for
                 the Comments or for any liability, damages or expenses caused
                 and/or suffered as a result of any use of and/or posting of
                 and/or appearance of the Comments on this website.

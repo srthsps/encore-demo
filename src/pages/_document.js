@@ -12,21 +12,13 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.png" />
           <meta
             property="og:title"
-            content="Encore - Powers ecommerce"
+            content="Encore - Powers"
           />
           <meta property="og:type" content="eCommerce Website" />
           <meta
             property="og:description"
             content="Encore - Powers ecommerce"
           />
-          {/* <meta
-            property="og:url"
-            content="https://kachabazar-store.vercel.app/"
-          />
-          <meta
-            property="og:image"
-            content="https://res.cloudinary.com/ahossain/image/upload/v1636729752/facebook-page_j7alju.png"
-          /> */}
         </Head>
         <body>
           <Main />

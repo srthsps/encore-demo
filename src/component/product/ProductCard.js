@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
         product={product}
       />
 
-      <div className="group box-border overflow-hidden flex rounded-md shadow-sm pe-0 flex-col items-center bg-white relative">
+      <div style={{width:"200px", height:"230px"}} className="group box-border overflow-hidden flex rounded-md shadow-sm pe-0 flex-col items-center bg-white relative">
         <div
           onClick={() => setModalOpen(!modalOpen)}
           className="relative flex justify-center w-full cursor-pointer"
@@ -69,16 +69,14 @@ const ProductCard = ({ product }) => {
 
           <img
             src={product.image}
-            width={160}
-            height={80}
             alt={product.brand_name}
-            className="object-cover p-4 transition duration-150 ease-linear transform group-hover:scale-105"
+            className="w-100 object-cover p-4 transition duration-150 ease-linear transform group-hover:scale-105"
           />
         </div>
         <div className="w-full px-3 lg:px-4 pb-4 overflow-hidden">
           <div className="relative mb-1">
-            <h2 className="text-heading truncate mb-0 block text-sm font-medium text-gray-600">
-              <span className="line-clamp-2">{product.brand}</span>
+            <h2 className=" pt-3 text-heading truncate mb-0 block text-sm font-medium text-gray-600">
+              <span className="line-clamp-2 ">{product.brand}</span>
             </h2>
             <span className="text-gray-400 font-medium text-xs d-block mb-1">
               <p>Product Code: {product.product_code}</p>

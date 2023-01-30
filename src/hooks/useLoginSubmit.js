@@ -61,7 +61,7 @@ const useLoginSubmit = (setModalOpen, setShowVerifyEmail, setShowVerifyOtp) => {
           // setModalOpen(true);
           notifySuccess('Registration Success!')
           setShowVerifyEmail(true)
-          router.push('/Login')
+          // router.push('/Login')
         })
         .catch((err) => {
           setLoading(false)
