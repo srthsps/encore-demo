@@ -57,25 +57,11 @@ const NavBarTop = () => {
         <div className="max-w-screen-2xl mx-auto px-3 sm:px-10">
           <div className="text-gray-700 py-2 font-sans text-xs font-medium border-b flex justify-between items-center">
             <span className="flex items-center">
-              <FiPhoneCall className="mr-2" />
-              We are available 24/7, Need help? Call Us:{' '}
-              <a
-                href="tel:+012345609"
-                className="font-bold text-cyan-600 ml-1"
-              >
-                +971 4 358 1030
-              </a>
+
             </span>
 
             <span className="flex items-center">
-              <FiMail className="mr-2" />
-              We are available 24/7, Need help? Email:{' '}
-              <a
-                href="tel:+012345609"
-                className="font-bold text-cyan-600 ml-1"
-              >
-                sales@encorepowers.com
-              </a>
+
             </span>
 
             <div className="lg:text-right flex items-center">

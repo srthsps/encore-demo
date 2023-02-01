@@ -63,11 +63,11 @@ const pages = [
     href: '/terms-and-conditions',
     icon: HiOutlineDocumentText,
   },
-  {
-    title: '404',
-    href: '/404',
-    icon: FiAlertCircle,
-  },
+  // {
+  //   title: '404',
+  //   href: '/404',
+  //   icon: FiAlertCircle,
+  // },
 ];
 
 const userSidebar = [

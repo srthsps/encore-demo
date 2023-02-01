@@ -6,6 +6,7 @@ import { ChevronDownIcon } from '@heroicons/react/outline';
 //internal import
 import { pages } from '@utils/data';
 import Category from '@component/category/Category';
+import { FiMail, FiPhoneCall } from 'react-icons/fi';
 
 const NavbarPromo = () => {
 
@@ -22,11 +23,11 @@ const NavbarPromo = () => {
                     className="md:flex space-x-10 items-center"
                   >
                     <Popover className="relative font-serif">
-                    <Link href="/">
-                      <a className="font-serif mx-4 py-2 text-sm font-medium hover:text-cyan-400">
-                        Home
-                      </a>
-                    </Link>
+                      <Link href="/">
+                        <a className="font-serif mx-4 py-2 text-sm font-medium hover:text-cyan-400">
+                          Home
+                        </a>
+                      </Link>
                       {/* <Popover.Button className="group inline-flex items-center py-2 hover:text-cyan-400 focus:outline-none">
                         <span className="font-serif text-sm font-medium">
                           Categories
@@ -36,7 +37,7 @@ const NavbarPromo = () => {
                           aria-hidden="true"
                         />
                       </Popover.Button> */}
-  
+
                       <Transition
                         as={Fragment}
                         enter="transition ease-out duration-200"
@@ -131,6 +132,40 @@ const NavbarPromo = () => {
                 Terms & Conditions
               </a>
             </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className=" xl:block bg-white border-b">
+        <div className="max-w-screen-2xl mx-auto px-3 sm:px-10 h-12 flex justify-between items-center">
+          <div className="inline-flex">
+            <Popover className="relative">
+              <div className="max-w-7xl mx-auto">
+                <span className="flex items-center" style={{fontSize:"10px"}}>
+                  <FiPhoneCall
+                    className="mr-2" />
+                  Need help? Call Us:{' '}
+                  <a
+                    href="tel:+012345609"
+                    className="font-bold text-cyan-600 ml-1"
+                  >
+                    +971 4 358 1030
+                  </a>
+                </span>
+              </div>
+            </Popover>
+          </div>
+          <div className="flex">
+            <span className="flex items-center" style={{fontSize:"10px"}}>
+              <FiMail className="mr-2" />
+              Need help? Email:{' '}
+              <a
+                href="tel:+012345609"
+                className="font-bold text-cyan-600 ml-1"
+              >
+                sales@encorepowers.com
+              </a>
+            </span>
           </div>
         </div>
       </div>

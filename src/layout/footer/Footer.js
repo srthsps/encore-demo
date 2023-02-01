@@ -63,9 +63,11 @@ const Footer = () => {
             </Link>
             <p className="leading-7 font-sans text-sm text-gray-600 mt-3">
               <span>
-                987 Andre Plain Suite High Street 838, <br /> Lake Hestertown,
-                USA
+                303, AL ZAROUNI BUILDING <br /> DAMASCUS STREET,
+                AL QUSAIS INDUSTRIAL AREA 2
+                DUBAI - UNITED ARAB EMIRATES
               </span>
+              <br />
               <br />
               <span>Tel: +971 4 358 1030 </span>
               <br />

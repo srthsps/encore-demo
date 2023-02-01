@@ -20,14 +20,20 @@ const AboutUs = () => {
               </h3>
               <div className="mt-3 text-base opacity-90 leading-7">
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
+                  Encore powers was created in order to promptly and effectively address the needs of our interlocutors in Middle Eastern countries, and it can count on a vast network of suppliers scattered all over the world.
 
-                <p>
-                  In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.
+                  The company takes pride in its unwavering commitment to on-time delivery and happi-
+
+                  ness and satisfaction of its customer every time. To provide our clients with the best service in an honest and timely manner most importantly, to conduct our business with integrity. the commercial offer of Encore Powers includes the most diverse products categories and a virtually unlimited range of brands, to cover the whole demand's spectrum of equipment, components and devices for the manufacturing sector. Our main objective is to become a single reference point for all the needs related to the industrial activities, and in pursuing it we follow an approach aimed at the consolidation of personal relationships with the most
+
+                  reliable and trustworthy interlocutors - given that trust is the most important value for us,
+
+                  even outside the business.
+
+                  Our company operates within the global marketplace via a wide network of distributor across more than 60 countries; guaranteeing rapid and effective service. As an interna- tionally oriented industrial automation distributor, our dedicated team is poised to deliver second-to-none service and assistance to customers' requests and enquiries from all over the world, offering the best conditions thanks to our strong and growing network of part- ners.
                 </p>
               </div>
-              <div className="grid md:grid-cols-2 gap-6 lg:grid-cols-2 xl:gap-6 mt-8">
+              {/* <div className="grid md:grid-cols-2 gap-6 lg:grid-cols-2 xl:gap-6 mt-8">
                 <div className="p-8 bg-indigo-50 shadow-sm rounded-lg">
                   <span className="text-3xl block font-extrabold font-serif mb-4 text-gray-800">
                     10K
@@ -50,7 +56,7 @@ const AboutUs = () => {
                     Competently productize virtual models without performance.{' '}
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
             {/* <div className="mt-10 lg:mt-0">
               <Image width={920} height={750} src="/about-us.jpg" alt="logo" />
