@@ -141,10 +141,10 @@ const NavbarPromo = () => {
           <div className="inline-flex">
             <Popover className="relative">
               <div className="max-w-7xl mx-auto">
-                <span className="flex items-center" style={{fontSize:"10px"}}>
+                <span className="flex items-center" style={{ fontSize: "10px" }}>
                   <FiPhoneCall
                     className="mr-2" />
-                  Need help? Call Us:{' '}
+                  Call Us:{' '}
                   <a
                     href="tel:+012345609"
                     className="font-bold text-cyan-600 ml-1"
@@ -156,9 +156,9 @@ const NavbarPromo = () => {
             </Popover>
           </div>
           <div className="flex">
-            <span className="flex items-center" style={{fontSize:"10px"}}>
+            <span className="flex items-center" style={{ fontSize: "10px" }}>
               <FiMail className="mr-2" />
-              Need help? Email:{' '}
+              Email:{' '}
               <a
                 href="tel:+012345609"
                 className="font-bold text-cyan-600 ml-1"
